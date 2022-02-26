@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:xpress_drive/ui/home/home_viewmodel.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
+import 'package:xpress_drive/ui/widget/dropdown/dropdown.dart';
 import 'package:xpress_drive/ui/widget/icons/icon.dart';
+import 'package:xpress_drive/ui/widget/textfields/search_field.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -38,17 +40,68 @@ class HomeView extends StatelessWidget {
                             color: AppColor.primary,
                           ),
                         ),
-                        Material(
-                            color: Colors.transparent,
-                            shape: const CircleBorder(),
-                            child: InkWell(
-                                customBorder: const CircleBorder(),
-                                onTap: () {},
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0.h),
-                                  child: AppIcon(AppIcons.menu,
-                                      size: 19.h, color: AppColor.primary),
-                                ))),
+                        InkWell(
+                            customBorder: const CircleBorder(),
+                            onTap: () {},
+                            child: Padding(
+                              padding: EdgeInsets.all(8.0.h),
+                              child: AppIcon(AppIcons.menu,
+                                  size: 19.h, color: AppColor.primary),
+                            )),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    SearchField(
+                        hint: 'Search Folder',
+                        value: model.searchText,
+                        onChanged: model.setSearchText),
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    Row(
+                      children: [
+                        Dropdown<Filter>(
+                            items: Filter.values,
+                            value: model.filter,
+                            onChanged: model.setFilter,
+                            itemBuilder: (filter) {
+                              return Text(
+                                filter.name.replaceAll('_', ' '),
+                                style: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: AppColor.primary,
+                                    fontWeight: FontWeight.w500),
+                              );
+                            }),
+                        Expanded(child: SizedBox.fromSize()),
+                        InkWell(
+                          customBorder: const CircleBorder(),
+                          onTap: () {
+                            model.setView(View.List);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.all(10.h),
+                            child: AppIcon(AppIcons.list,
+                                size: 15.h,
+                                color: AppColor.primary.withOpacity(
+                                    model.view == View.List ? 1 : 0.5)),
+                          ),
+                        ),
+                        InkWell(
+                          customBorder: const CircleBorder(),
+                          onTap: () {
+                            model.setView(View.Grid);
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.all(10.h),
+                            child: AppIcon(AppIcons.grid,
+                                size: 15.h,
+                                color: AppColor.primary.withOpacity(
+                                    model.view == View.Grid ? 1 : 0.5)),
+                          ),
+                        ),
                       ],
                     )
                   ],
