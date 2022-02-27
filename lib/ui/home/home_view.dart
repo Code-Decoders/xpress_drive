@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
 import 'package:xpress_drive/ui/home/home_viewmodel.dart';
+import 'package:xpress_drive/ui/smart_widget/folder_view/folder_view.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
 import 'package:xpress_drive/ui/widget/dropdown/dropdown.dart';
 import 'package:xpress_drive/ui/widget/icons/icon.dart';
@@ -25,8 +26,9 @@ class HomeView extends StatelessWidget {
         builder: (context, model, child) {
           return Scaffold(
             body: SafeArea(
+              bottom: false,
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.h, vertical: 27.h),
+                padding: EdgeInsets.fromLTRB(30.h, 27.h, 30.h, 0.h),
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -103,8 +105,53 @@ class HomeView extends StatelessWidget {
                           ),
                         ),
                       ],
+                    ),
+                    Expanded(
+                      child: GridView.builder(
+                        padding: EdgeInsets.symmetric(vertical: 30.h),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio: 1.37,
+                            crossAxisSpacing: 20.h,
+                            mainAxisSpacing: 20.h),
+                        itemBuilder: (context, index) {
+                          return FolderView(
+                            folder: model.folders[index],
+                            color: (index + 1) % 4 == 0
+                                ? AppColor.green
+                                : (index + 1) % 4 == 3
+                                    ? AppColor.red
+                                    : (index + 1) % 4 == 2
+                                        ? AppColor.yellow
+                                        : AppColor.primaryDark,
+                          );
+                        },
+                        itemCount: model.folders.length,
+                      ),
                     )
                   ],
+                ),
+              ),
+            ),
+            floatingActionButton: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Material(
+                shape: const CircleBorder(),
+                color: AppColor.primary,
+                child: InkWell(
+                  onTap: () {},
+                  customBorder: const CircleBorder(),
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    padding: EdgeInsets.all(25.h),
+                    child: Icon(
+                      Icons.add,
+                      size: 19.h,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
             ),
