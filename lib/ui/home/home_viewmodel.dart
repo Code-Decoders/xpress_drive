@@ -1,6 +1,8 @@
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:xpress_drive/app/app.locator.dart';
 import 'package:xpress_drive/app/app.router.dart';
+import 'package:xpress_drive/datamodels/file.dart';
 import 'package:xpress_drive/datamodels/folder.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
 
@@ -17,6 +19,43 @@ class HomeViewModel extends BaseViewModel {
   Filter _filter = Filter.Recent;
 
   View _view = View.Grid;
+
+  bool _isSpeedDialOpen = false;
+
+  final List<File> _files = [
+    File(
+      title: 'Project.png',
+      url: 'https://www.google.com/',
+    ),
+    File(
+      title: 'Project.gif',
+      url: 'https://www.google.com/',
+    ),
+    File(
+      title: 'Project.pdf',
+      url: 'https://www.google.com/',
+    ),
+    File(
+      title: 'Project.jpeg',
+      url: 'https://www.google.com/',
+    ),
+    File(
+      title: 'Project.mp4',
+      url: 'https://www.google.com/',
+    ),
+    File(
+      title: 'Project.mp3',
+      url: 'https://www.google.com/',
+    ),
+    File(
+      title: 'Project.doc',
+      url: 'https://www.google.com/',
+    ),
+    File(
+      title: 'Project.aec',
+      url: 'https://www.google.com/',
+    ),
+  ];
 
   final List<Folder> _folders = [
     Folder(
@@ -59,11 +98,27 @@ class HomeViewModel extends BaseViewModel {
 
   List<Folder> get folders => _folders;
 
-  HomeViewModel() {}
+  List<File> get files => _files;
+
+  bool get isSpeedDialOpen => _isSpeedDialOpen;
 
   void setSearchText(String value) {
     _searchText = value;
     notifyListeners();
+  }
+
+  void deleteFile(int index) async {
+    var data = await locator<DialogService>().showConfirmationDialog(
+      cancelTitle: 'Cancel',
+      title: 'Are you sure want to delete it?',
+      confirmationTitle: 'Delete',
+    );
+    if (data != null) {
+      if (data.confirmed) {
+        _files.removeAt(index);
+        notifyListeners();
+      }
+    }
   }
 
   void setFilter(Filter? value) {
@@ -104,6 +159,14 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
+  void navigateToCreateFile() async {
+    var file = await locator<AppRouter>().push(CreateFileRoute());
+    if (file != null) {
+      _files.add(file as File);
+      notifyListeners();
+    }
+  }
+
   void navigateToCreateFolder() async {
     var folder = await locator<AppRouter>().push(CreateFolderRoute());
     if (folder != null) {
@@ -111,5 +174,25 @@ class HomeViewModel extends BaseViewModel {
       _folders.add(folder as Folder);
       notifyListeners();
     }
+  }
+
+  void onDelete(int index) async {
+    var data = await locator<DialogService>().showConfirmationDialog(
+      cancelTitle: 'Cancel',
+      title: 'Are you sure want to delete it?',
+      confirmationTitle: 'Delete',
+    );
+    if (data != null) {
+      if (data.confirmed) {
+        print('Deleting');
+        _folders.removeAt(index);
+        notifyListeners();
+      }
+    }
+  }
+
+  void openSpeedDial(bool value) {
+    _isSpeedDialOpen = value;
+    notifyListeners();
   }
 }

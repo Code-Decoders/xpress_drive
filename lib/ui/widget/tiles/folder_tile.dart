@@ -51,16 +51,16 @@ class FolderTile extends StatelessWidget {
                             itemBuilder: (context) {
                               return [
                                 PopupMenuItem(
-                                  onTap: () {
-                                    locator<AppRouter>().popTop();
+                                  onTap: () async {
+                                    await locator<AppRouter>().popTop();
                                     onEdit?.call();
                                   },
                                   child: Text('Rename'),
                                   value: 'rename',
                                 ),
                                 PopupMenuItem(
-                                  onTap: () {
-                                    locator<AppRouter>().popTop();
+                                  onTap: () async {
+                                    await locator<AppRouter>().popTop();
                                     onDelete?.call();
                                   },
                                   child: Text('Delete'),
@@ -104,16 +104,16 @@ class FolderTile extends StatelessWidget {
                         itemBuilder: (context) {
                           return [
                             PopupMenuItem(
-                              onTap: () {
-                                locator<AppRouter>().popTop();
+                              onTap: () async {
+                                await locator<AppRouter>().popTop();
                                 onEdit?.call();
                               },
                               child: Text('Rename'),
                               value: 'rename',
                             ),
                             PopupMenuItem(
-                              onTap: () {
-                                locator<AppRouter>().popTop();
+                              onTap: () async {
+                                await locator<AppRouter>().popTop();
                                 onDelete?.call();
                               },
                               child: Text('Delete'),

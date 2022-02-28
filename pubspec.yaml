@@ -29,10 +29,12 @@ environment:
 dependencies:
   auto_route: ^3.2.4
   cupertino_icons: ^1.0.2
+  file_picker: ^4.5.0
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.2+1
   flutter_screenutil: ^5.3.1
+  flutter_speed_dial: ^5.0.0+1
   flutter_svg: ^1.0.3
   get_it: ^7.2.0
   http: ^0.13.4

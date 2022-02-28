@@ -28,6 +28,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData,
           child: CreateFolderView(key: args.key, folder: args.folder));
     },
+    CreateFileRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const CreateFileView());
+    },
     FolderRoute.name: (routeData) {
       final args = routeData.argsAs<FolderRouteArgs>();
       return AdaptivePage<dynamic>(
@@ -41,6 +45,7 @@ class _$AppRouter extends RootStackRouter {
   List<RouteConfig> get routes => [
         RouteConfig(HomeRoute.name, path: '/'),
         RouteConfig(CreateFolderRoute.name, path: '/create-folder'),
+        RouteConfig(CreateFileRoute.name, path: '/create-File'),
         RouteConfig(FolderRoute.name, path: '/folder')
       ];
 }
@@ -75,6 +80,14 @@ class CreateFolderRouteArgs {
   String toString() {
     return 'CreateFolderRouteArgs{key: $key, folder: $folder}';
   }
+}
+
+/// generated route for
+/// [CreateFileView]
+class CreateFileRoute extends PageRouteInfo<void> {
+  const CreateFileRoute() : super(CreateFileRoute.name, path: '/create-File');
+
+  static const String name = 'CreateFileRoute';
 }
 
 /// generated route for

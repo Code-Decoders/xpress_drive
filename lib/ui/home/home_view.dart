@@ -1,16 +1,12 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:xpress_drive/app/app.locator.dart';
-import 'package:xpress_drive/app/app.router.dart';
 import 'package:xpress_drive/datamodels/folder.dart';
 import 'package:xpress_drive/ui/home/home_viewmodel.dart';
-import 'package:xpress_drive/ui/setup_dialog_ui.dart';
-import 'package:xpress_drive/ui/widget/dialog/delete_confirm.dart';
+import 'package:xpress_drive/ui/widget/tiles/file_tile.dart';
 import 'package:xpress_drive/ui/widget/tiles/folder_tile.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
 import 'package:xpress_drive/ui/widget/dropdown/dropdown.dart';
@@ -132,61 +128,68 @@ class HomeView extends StatelessWidget {
                             mainAxisSpacing:
                                 model.view == View.List ? 0 : 20.h),
                         itemBuilder: (context, index) {
-                          return FolderTile(
+                          if (index < model.folders.length)
+                            return FolderTile(
+                              view: model.view,
+                              folder: model.folders[index],
+                              onTap: () {
+                                model.navigateToFolder(index);
+                              },
+                              onEdit: () {
+                                model.navigateToEditFolder(index);
+                              },
+                              onDelete: () {
+                                model.onDelete(index);
+                              },
+                              color: (index + 1) % 4 == 0
+                                  ? AppColor.green
+                                  : (index + 1) % 4 == 3
+                                      ? AppColor.red
+                                      : (index + 1) % 4 == 2
+                                          ? AppColor.yellow
+                                          : AppColor.primaryDark,
+                            );
+                          return FileTile(
                             view: model.view,
-                            folder: model.folders[index],
-                            onTap: () {
-                              model.navigateToFolder(index);
+                            file: model.files[index - model.folders.length],
+                            color: AppColor.primary,
+                            onDelete: () {
+                              model.deleteFile(index - model.folders.length);
                             },
-                            onEdit: () {
-                              model.navigateToEditFolder(index);
-                            },
-                            onDelete: () async {
-                              print('delete');
-                              var data =
-                                  await locator<DialogService>().showDialog(
-                                title: 'Test Dialog Title',
-                                description: 'Test Dialog Description',
-                                dialogPlatform: DialogPlatform.Cupertino,
-                              );
-                              print(data);
-                            },
-                            color: (index + 1) % 4 == 0
-                                ? AppColor.green
-                                : (index + 1) % 4 == 3
-                                    ? AppColor.red
-                                    : (index + 1) % 4 == 2
-                                        ? AppColor.yellow
-                                        : AppColor.primaryDark,
                           );
                         },
-                        itemCount: model.folders.length,
+                        itemCount: model.folders.length + model.files.length,
                       ),
                     )
                   ],
                 ),
               ),
             ),
-            floatingActionButton: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Material(
-                shape: const CircleBorder(),
-                color: AppColor.primary,
-                child: InkWell(
-                  onTap: model.navigateToCreateFolder,
-                  customBorder: const CircleBorder(),
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    padding: EdgeInsets.all(25.h),
-                    child: Icon(
+            floatingActionButton: SpeedDial(
+              direction: SpeedDialDirection.left,
+              children: [
+                SpeedDialChild(
+                    child: const Icon(
                       Icons.add,
-                      size: 19.h,
-                      color: Colors.white,
                     ),
-                  ),
+                    backgroundColor: AppColor.primary,
+                    foregroundColor: Colors.white,
+                    label: 'Folder',
+                    onTap: model.navigateToCreateFolder),
+                SpeedDialChild(
+                  child: const Icon(Icons.add),
+                  backgroundColor: AppColor.primary,
+                  foregroundColor: Colors.white,
+                  label: 'File',
+                  onTap: model.navigateToCreateFile,
                 ),
+              ],
+              backgroundColor: AppColor.primary,
+              activeIcon: Icons.menu,
+              child: Icon(
+                Icons.add,
+                size: 19.h,
+                color: Colors.white,
               ),
             ),
           );

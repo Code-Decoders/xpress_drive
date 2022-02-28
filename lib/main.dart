@@ -9,7 +9,6 @@ import 'package:xpress_drive/ui/setup_dialog_ui.dart';
 void main() {
   configureDependencies();
   setupSnackbarUi();
-  setupDialogUi();
   runApp(const MyApp());
 }
 
