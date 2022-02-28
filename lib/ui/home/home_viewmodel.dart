@@ -160,9 +160,11 @@ class HomeViewModel extends BaseViewModel {
   }
 
   void navigateToCreateFile() async {
-    var file = await locator<AppRouter>().push(CreateFileRoute());
+    var file = await locator<AppRouter>().push(const CreateFileRoute());
     if (file != null) {
+      print(file);
       _files.add(file as File);
+      print(files);
       notifyListeners();
     }
   }

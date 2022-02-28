@@ -5,7 +5,7 @@ import 'package:xpress_drive/datamodels/file.dart';
 import 'dart:io' as io;
 
 class CreateFileViewModel extends BaseViewModel {
-  File _file = new File(title: '', url: '');
+  File _file = File(title: '', url: '');
   io.File? _uploadFile;
   bool _isDiabled = true;
   File get file => _file;
@@ -16,12 +16,21 @@ class CreateFileViewModel extends BaseViewModel {
 
   void saveFile() {
     print('save folder');
+    if (!_file.title.contains('.')) {
+      _file.title = _file.title + '.' + _uploadFile!.uri.path.split('.').last;
+    }
     locator<AppRouter>().popTop(_file);
   }
 
   void setFile(String name) {
     _file = _file.copyWith(title: name);
-    _isDiabled = name.isEmpty;
+    _isDiabled = name.isEmpty || _uploadFile == null;
+    notifyListeners();
+  }
+
+  void setUploadFile(io.File file) {
+    _uploadFile = file;
+    _isDiabled = _file.title.isEmpty || _uploadFile == null;
     notifyListeners();
   }
 }

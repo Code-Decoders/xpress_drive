@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 class File {
-  final String title;
-  final String url;
+  String title;
+  String url;
   File({
     required this.title,
     required this.url,

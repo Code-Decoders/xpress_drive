@@ -30,6 +30,7 @@ class HomeView extends StatelessWidget {
     return ViewModelBuilder<HomeViewModel>.reactive(
         viewModelBuilder: () => HomeViewModel(),
         builder: (context, model, child) {
+          print('${model.folders.length} +${model.files.length}');
           return Scaffold(
             drawer: _drawer(model, context),
             body: SafeArea(

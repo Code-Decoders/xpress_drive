@@ -60,8 +60,7 @@ class CreateFileView extends StatelessWidget {
 
                         if (result != null) {
                           io.File file = io.File(result.files.single.path!);
-                        } else {
-                          // User canceled the picker
+                          model.setUploadFile(file);
                         }
                       },
                       child: Container(
@@ -73,22 +72,28 @@ class CreateFileView extends StatelessWidget {
                           ),
                         ),
                         padding: EdgeInsets.symmetric(vertical: 10.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.add,
-                              color: AppColor.primaryDark,
-                            ),
-                            Text(
-                              'Add File',
-                              style: TextStyle(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: AppColor.primaryDark),
-                            )
-                          ],
-                        ),
+                        child: model.uploadFile != null
+                            ? Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10.h),
+                                child: Text(
+                                    model.uploadFile!.uri.pathSegments.last),
+                              )
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.add,
+                                    color: AppColor.primaryDark,
+                                  ),
+                                  Text(
+                                    'Add File',
+                                    style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColor.primaryDark),
+                                  )
+                                ],
+                              ),
                       ),
                     )),
                 Expanded(child: SizedBox.shrink()),
