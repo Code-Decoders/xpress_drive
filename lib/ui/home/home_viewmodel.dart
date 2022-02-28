@@ -1,16 +1,14 @@
 import 'package:stacked/stacked.dart';
+import 'package:xpress_drive/app/app.locator.dart';
+import 'package:xpress_drive/app/app.router.dart';
 import 'package:xpress_drive/datamodels/folder.dart';
+import 'package:xpress_drive/ui/widget/color.dart';
 
 enum Filter {
   Recent,
   Oldest,
   A_TO_Z,
   Z_TO_A,
-}
-
-enum View {
-  List,
-  Grid,
 }
 
 class HomeViewModel extends BaseViewModel {
@@ -21,18 +19,37 @@ class HomeViewModel extends BaseViewModel {
   View _view = View.Grid;
 
   final List<Folder> _folders = [
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 0),
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 1),
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 2),
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 3),
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 4),
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 5),
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 6),
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 7),
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 8),
-    Folder(title: 'Mobile App', createdAt: DateTime.now(), type: 'folder', id: 9),
+    Folder(
+      title: 'Mobile App',
+    ),
+    Folder(
+      title: 'Mobile App',
+    ),
+    Folder(
+      title: 'Mobile App',
+    ),
+    Folder(
+      title: 'Mobile App',
+    ),
+    Folder(
+      title: 'Mobile App',
+    ),
+    Folder(
+      title: 'Mobile App',
+    ),
+    Folder(
+      title: 'Mobile App',
+    ),
+    Folder(
+      title: 'Mobile App',
+    ),
+    Folder(
+      title: 'Mobile App',
+    ),
+    Folder(
+      title: 'Mobile App',
+    ),
   ];
-
 
   String get searchText => _searchText;
 
@@ -41,6 +58,9 @@ class HomeViewModel extends BaseViewModel {
   View get view => _view;
 
   List<Folder> get folders => _folders;
+
+  HomeViewModel() {
+  }
 
   void setSearchText(String value) {
     _searchText = value;
@@ -55,5 +75,31 @@ class HomeViewModel extends BaseViewModel {
   void setView(View value) {
     _view = value;
     notifyListeners();
+  }
+
+  void navigateToFolder(int index) {
+    print('Navigating to folder $index');
+    locator<AppRouter>().push(FolderRoute(
+        folder: _folders[index],
+        color: (index + 1) % 4 == 0
+            ? AppColor.green
+            : (index + 1) % 4 == 3
+                ? AppColor.red
+                : (index + 1) % 4 == 2
+                    ? AppColor.yellow
+                    : AppColor.primaryDark));
+  }
+
+  void closeDrawer() {
+    locator<AppRouter>().popTop();
+  }
+
+  void navigateToCreateFolder() async {
+    var folder = await locator<AppRouter>().push(CreateFolderRoute());
+    if (folder != null) {
+      print(folder);
+      _folders.add(folder as Folder);
+      notifyListeners();
+    }
   }
 }

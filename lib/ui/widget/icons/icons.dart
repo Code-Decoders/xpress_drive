@@ -13,5 +13,7 @@ class AppIcons {
   static const AppIcons folder = AppIcons._('folder');
   static const AppIcons more = AppIcons._('more');
   static const AppIcons menu = AppIcons._('menu');
+  static const AppIcons profile = AppIcons._('profile');
+  static const AppIcons power = AppIcons._('power');
   static const AppIcons search = AppIcons._('search');
 }

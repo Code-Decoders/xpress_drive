@@ -39,6 +39,9 @@ class SearchField extends HookWidget {
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.h),
               borderSide: BorderSide(color: AppColor.borderColor)),
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10.h),
+              borderSide: BorderSide(color: AppColor.borderColor)),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.h),
               borderSide: BorderSide(color: AppColor.borderColor)),
