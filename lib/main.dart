@@ -4,9 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:xpress_drive/app/app.locator.dart';
 import 'package:xpress_drive/app/app.router.dart';
 import 'package:xpress_drive/ui/home/home_view.dart';
+import 'package:xpress_drive/ui/setup_dialog_ui.dart';
 
 void main() {
   configureDependencies();
+  setupSnackbarUi();
+  setupDialogUi();
   runApp(const MyApp());
 }
 

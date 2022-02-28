@@ -13,7 +13,7 @@ class CreateFolderView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CreateFolderViewModel>.reactive(
-        viewModelBuilder: () => CreateFolderViewModel(),
+        viewModelBuilder: () => CreateFolderViewModel(folder: folder),
         builder: (context, model, child) {
           return Scaffold(
             appBar: AppBar(

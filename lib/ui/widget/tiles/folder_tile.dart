@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:xpress_drive/app/app.locator.dart';
+import 'package:xpress_drive/app/app.router.dart';
 import 'package:xpress_drive/datamodels/folder.dart';
 import 'package:xpress_drive/ui/widget/icons/icon.dart';
 
@@ -7,13 +9,17 @@ class FolderTile extends StatelessWidget {
   final Color color;
   final Folder folder;
   final VoidCallback? onTap;
+  final VoidCallback? onEdit;
+  final VoidCallback? onDelete;
   final View view;
   const FolderTile(
       {Key? key,
       required this.color,
       required this.folder,
       this.onTap,
-      required this.view})
+      this.onDelete,
+      required this.view,
+      this.onEdit})
       : super(key: key);
 
   @override
@@ -41,9 +47,27 @@ class FolderTile extends StatelessWidget {
                           color: color,
                           size: 28.h,
                         ),
-                        InkWell(
-                            customBorder: const CircleBorder(),
-                            onTap: () {},
+                        PopupMenuButton(
+                            itemBuilder: (context) {
+                              return [
+                                PopupMenuItem(
+                                  onTap: () {
+                                    locator<AppRouter>().popTop();
+                                    onEdit?.call();
+                                  },
+                                  child: Text('Rename'),
+                                  value: 'rename',
+                                ),
+                                PopupMenuItem(
+                                  onTap: () {
+                                    locator<AppRouter>().popTop();
+                                    onDelete?.call();
+                                  },
+                                  child: Text('Delete'),
+                                  value: 'delete',
+                                ),
+                              ];
+                            },
                             child: Padding(
                               padding: EdgeInsets.all(8.0.h),
                               child: AppIcon(AppIcons.more,
@@ -76,7 +100,32 @@ class FolderTile extends StatelessWidget {
                               color: color,
                               fontWeight: FontWeight.w500)),
                     ),
-                    AppIcon(AppIcons.more, size: 15.h, color: color),
+                    PopupMenuButton(
+                        itemBuilder: (context) {
+                          return [
+                            PopupMenuItem(
+                              onTap: () {
+                                locator<AppRouter>().popTop();
+                                onEdit?.call();
+                              },
+                              child: Text('Rename'),
+                              value: 'rename',
+                            ),
+                            PopupMenuItem(
+                              onTap: () {
+                                locator<AppRouter>().popTop();
+                                onDelete?.call();
+                              },
+                              child: Text('Delete'),
+                              value: 'delete',
+                            ),
+                          ];
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.all(8.0.h),
+                          child:
+                              AppIcon(AppIcons.more, size: 15.h, color: color),
+                        )),
                   ],
                 ),
         ),

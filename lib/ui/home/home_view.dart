@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stacked_services/stacked_services.dart';
 import 'package:xpress_drive/app/app.locator.dart';
 import 'package:xpress_drive/app/app.router.dart';
 import 'package:xpress_drive/datamodels/folder.dart';
 import 'package:xpress_drive/ui/home/home_viewmodel.dart';
+import 'package:xpress_drive/ui/setup_dialog_ui.dart';
+import 'package:xpress_drive/ui/widget/dialog/delete_confirm.dart';
 import 'package:xpress_drive/ui/widget/tiles/folder_tile.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
 import 'package:xpress_drive/ui/widget/dropdown/dropdown.dart';
@@ -132,6 +137,19 @@ class HomeView extends StatelessWidget {
                             folder: model.folders[index],
                             onTap: () {
                               model.navigateToFolder(index);
+                            },
+                            onEdit: () {
+                              model.navigateToEditFolder(index);
+                            },
+                            onDelete: () async {
+                              print('delete');
+                              var data =
+                                  await locator<DialogService>().showDialog(
+                                title: 'Test Dialog Title',
+                                description: 'Test Dialog Description',
+                                dialogPlatform: DialogPlatform.Cupertino,
+                              );
+                              print(data);
                             },
                             color: (index + 1) % 4 == 0
                                 ? AppColor.green

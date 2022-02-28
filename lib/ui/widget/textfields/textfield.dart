@@ -21,6 +21,7 @@ class CustomField extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final controller = useTextEditingController(text: value);
+    print(value);
     return Padding(
       padding: EdgeInsets.only(bottom: 30.h),
       child: Column(

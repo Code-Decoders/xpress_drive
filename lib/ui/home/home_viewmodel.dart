@@ -59,8 +59,7 @@ class HomeViewModel extends BaseViewModel {
 
   List<Folder> get folders => _folders;
 
-  HomeViewModel() {
-  }
+  HomeViewModel() {}
 
   void setSearchText(String value) {
     _searchText = value;
@@ -92,6 +91,17 @@ class HomeViewModel extends BaseViewModel {
 
   void closeDrawer() {
     locator<AppRouter>().popTop();
+  }
+
+  void navigateToEditFolder(int index) async {
+    print('Navigating to edit folder $index');
+    var folder = await locator<AppRouter>().push(CreateFolderRoute(
+      folder: _folders[index],
+    ));
+    if (folder != null) {
+      _folders[index] = folder as Folder;
+      notifyListeners();
+    }
   }
 
   void navigateToCreateFolder() async {

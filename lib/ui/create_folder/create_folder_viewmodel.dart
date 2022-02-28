@@ -4,8 +4,7 @@ import 'package:xpress_drive/app/app.router.dart';
 import 'package:xpress_drive/datamodels/folder.dart';
 
 class CreateFolderViewModel extends BaseViewModel {
-  Folder _folder =
-      Folder(title: '');
+  Folder _folder = Folder(title: '');
 
   Folder get folder => _folder;
 
@@ -15,6 +14,7 @@ class CreateFolderViewModel extends BaseViewModel {
 
   CreateFolderViewModel({Folder? folder}) {
     if (folder != null) {
+      print('folder is not null');
       _folder = folder;
     } else {
       _isDiabled = true;
