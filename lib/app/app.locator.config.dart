@@ -10,7 +10,9 @@ import 'package:stacked_services/stacked_services.dart' as _i6;
 
 import '../services/auth_service.dart' as _i4;
 import '../services/biometric_service.dart' as _i5;
-import '../services/third_party_module_service.dart' as _i7;
+import '../services/encryption_service.dart' as _i7;
+import '../services/ipfs_service.dart' as _i8;
+import '../services/third_party_module_service.dart' as _i9;
 import 'app.router.dart' as _i3; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
@@ -26,6 +28,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => thirdPartyServicesModule.bottomSheetService);
   gh.lazySingleton<_i6.DialogService>(
       () => thirdPartyServicesModule.dialogService);
+  gh.singleton<_i7.EncryptionService>(_i7.EncryptionService());
+  gh.singleton<_i8.IpfsService>(_i8.IpfsService());
   gh.lazySingleton<_i6.NavigationService>(
       () => thirdPartyServicesModule.navigationService);
   gh.lazySingleton<_i6.SnackbarService>(
@@ -33,7 +37,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   return get;
 }
 
-class _$ThirdPartyServicesModule extends _i7.ThirdPartyServicesModule {
+class _$ThirdPartyServicesModule extends _i9.ThirdPartyServicesModule {
   @override
   _i6.BottomSheetService get bottomSheetService => _i6.BottomSheetService();
   @override

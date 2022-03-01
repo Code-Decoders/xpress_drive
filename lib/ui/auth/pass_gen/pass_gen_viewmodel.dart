@@ -11,6 +11,7 @@ import '../../../services/auth_service.dart';
 class PassGenViewModel extends BaseViewModel {
   String _password = '';
   String _username = '';
+
   PassGenViewModel(String username) {
     _username = username;
     _generatePassword();
@@ -19,12 +20,13 @@ class PassGenViewModel extends BaseViewModel {
   String get password => _password;
 
   void _generatePassword() {
-    _password = getRandomString(32);
+    _password = getRandomString();
   }
 
   void navigateToHome() {
+    createAcount();
     // navigate to home
-    locator<AppRouter>().push(const HomeRoute());
+    // locator<AppRouter>().push(const HomeRoute());
   }
 
   void smartLogin() {
@@ -40,7 +42,7 @@ class PassGenViewModel extends BaseViewModel {
     }
   }
 
-  String getRandomString(int length) {
+  String getRandomString({int length = 32}) {
     const _chars =
         'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
     Random _rnd = Random();
