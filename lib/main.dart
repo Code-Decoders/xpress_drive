@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       routeInformationProvider: router.routeInfoProvider(),
       theme: ThemeData(
-        fontFamily: 'Gilroy',
+        fontFamily: 'Gilroy-Regular',
         scaffoldBackgroundColor: Colors.white,
       ),
     );

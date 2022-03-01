@@ -74,24 +74,40 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Gilroy
+    - family: Gilroy-Thin
       fonts:
         - asset: assets/fonts/gilroy/Gilroy-Thin.ttf
           weight: 100
+    - family: Gilroy-UltraLight
+      fonts:
         - asset: assets/fonts/gilroy/Gilroy-UltraLight.ttf
           weight: 200
+    - family: Gilroy-Light
+      fonts:
         - asset: assets/fonts/gilroy/Gilroy-Light.ttf
           weight: 300
+    - family: Gilroy-Regular
+      fonts:
         - asset: assets/fonts/gilroy/Gilroy-Regular.ttf
           weight: 400
+    - family: Gilroy-Medium
+      fonts:
         - asset: assets/fonts/gilroy/Gilroy-Medium.ttf
           weight: 500
+    - family: Gilroy-SemiBold
+      fonts:
         - asset: assets/fonts/gilroy/Gilroy-SemiBold.ttf
           weight: 600
+    - family: Gilroy-Bold
+      fonts:
         - asset: assets/fonts/gilroy/Gilroy-Bold.ttf
           weight: 700
+    - family: Gilroy-ExtraBold
+      fonts:
         - asset: assets/fonts/gilroy/Gilroy-ExtraBold.ttf
           weight: 800
+    - family: Gilroy-Black
+      fonts:
         - asset: assets/fonts/gilroy/Gilroy-Black.ttf
           weight: 900
   #         style: italic

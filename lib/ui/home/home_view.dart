@@ -45,6 +45,7 @@ class HomeView extends StatelessWidget {
                         Text(
                           'Your Xpress Drive',
                           style: TextStyle(
+                            fontFamily: 'Gilroy-Medium',
                             fontSize: 24.sp,
                             fontWeight: FontWeight.w500,
                             color: AppColor.primary,
@@ -84,6 +85,7 @@ class HomeView extends StatelessWidget {
                               return Text(
                                 filter.name.replaceAll('_', ' '),
                                 style: TextStyle(
+                                    fontFamily: 'Gilroy-Medium',
                                     fontSize: 15.sp,
                                     color: AppColor.primary,
                                     fontWeight: FontWeight.w500),
@@ -233,6 +235,7 @@ class HomeView extends StatelessWidget {
                           Text(
                             'Kunal Jain',
                             style: TextStyle(
+                              fontFamily: 'Gilroy-Medium',
                               fontSize: 16.sp,
                               fontWeight: FontWeight.w500,
                               color: AppColor.primary,
@@ -241,6 +244,7 @@ class HomeView extends StatelessWidget {
                           Text(
                             'Gujarat, India',
                             style: TextStyle(
+                              fontFamily: 'Gilroy-Medium',
                               fontSize: 10.sp,
                               fontWeight: FontWeight.w500,
                               color: AppColor.primary,
@@ -275,7 +279,7 @@ class HomeView extends StatelessWidget {
           SizedBox(
             height: 108.h,
           ),
-          MenuTile(path: '/', title: 'Home'),
+          MenuTile(path: 'home', title: 'Home'),
           MenuTile(path: 'profile', title: 'Profile'),
           MenuTile(path: 'storage', title: 'Storage'),
           MenuTile(path: 'shared', title: 'Shared'),
@@ -294,6 +298,7 @@ class HomeView extends StatelessWidget {
                   child: InkWell(
                     onTap: () {
                       /// TODO: Logout
+                      model.navigateToLanding();
                     },
                     child: Row(
                       children: [
@@ -309,6 +314,7 @@ class HomeView extends StatelessWidget {
                           'Logout',
                           style: TextStyle(
                             fontSize: 16.sp,
+                            fontFamily: 'Gilroy-Bold',
                             fontWeight: FontWeight.bold,
                             color: AppColor.primary,
                           ),

@@ -37,7 +37,7 @@ class CreateFileView extends StatelessWidget {
                   child: Text(
                     'Create File',
                     style:
-                        TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 30.sp,fontFamily: 'Gilroy-Bold', fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(height: 30.h),
@@ -88,6 +88,7 @@ class CreateFileView extends StatelessWidget {
                                   Text(
                                     'Add File',
                                     style: TextStyle(
+                                      fontFamily: 'Gilroy-Medium',
                                         fontSize: 16.sp,
                                         fontWeight: FontWeight.w500,
                                         color: AppColor.primaryDark),
@@ -112,6 +113,7 @@ class CreateFileView extends StatelessWidget {
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20.sp,
+                            fontFamily: 'Gilroy-Bold',
                             fontWeight: FontWeight.bold),
                       ),
                     ),

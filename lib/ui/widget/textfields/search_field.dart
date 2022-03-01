@@ -25,6 +25,7 @@ class SearchField extends HookWidget {
         onChanged: onChanged,
         style: TextStyle(
           fontSize: 16.sp,
+          fontFamily: 'Gilroy-Medium',
           fontWeight: FontWeight.w500,
           color: AppColor.primary,
         ),
@@ -33,6 +34,8 @@ class SearchField extends HookWidget {
           hintText: hint,
           hintStyle: TextStyle(
             fontSize: 16.sp,
+                                              fontFamily: 'Gilroy-Medium',
+
             fontWeight: FontWeight.w500,
             color: AppColor.primary,
           ),

@@ -169,6 +169,11 @@ class HomeViewModel extends BaseViewModel {
     }
   }
 
+  void navigateToLanding() {
+    locator<AppRouter>().popTop();
+    locator<AppRouter>().push(const LandingRoute());
+  }
+
   void navigateToCreateFolder() async {
     var folder = await locator<AppRouter>().push(CreateFolderRoute());
     if (folder != null) {

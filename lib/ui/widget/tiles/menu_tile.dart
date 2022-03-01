@@ -15,7 +15,13 @@ class MenuTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool actived = (path ==
-        (locator<AppRouter>().topMostRouter().currentChild?.path ?? ''));
+        (locator<AppRouter>()
+                .topMostRouter()
+                .currentChild
+                ?.path
+                .split('/')
+                .last ??
+            ''));
     return Padding(
       padding: EdgeInsets.only(bottom: 21.h),
       child: Material(
@@ -40,6 +46,8 @@ class MenuTile extends StatelessWidget {
                       title,
                       style: TextStyle(
                           fontSize: 16.sp,
+                          fontFamily:
+                              !actived ? 'Gilroy-Medium' : 'Gilroy-Bold',
                           fontWeight:
                               !actived ? FontWeight.w500 : FontWeight.bold,
                           color: AppColor.primary),

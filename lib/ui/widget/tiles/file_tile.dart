@@ -75,6 +75,7 @@ class FileTile extends StatelessWidget {
                     SizedBox(height: 14.h),
                     Text(file.title,
                         style: TextStyle(
+                            fontFamily: 'Gilroy-Medium',
                             fontSize: 15.sp,
                             color: color,
                             fontWeight: FontWeight.w500)),
@@ -97,6 +98,7 @@ class FileTile extends StatelessWidget {
                     Expanded(
                       child: Text(file.title,
                           style: TextStyle(
+                              fontFamily: 'Gilroy-Medium',
                               fontSize: 15.sp,
                               color: color,
                               fontWeight: FontWeight.w500)),

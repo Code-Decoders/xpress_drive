@@ -78,6 +78,7 @@ class FolderTile extends StatelessWidget {
                     SizedBox(height: 14.h),
                     Text(folder.title,
                         style: TextStyle(
+                            fontFamily: 'Gilroy-Medium',
                             fontSize: 15.sp,
                             color: color,
                             fontWeight: FontWeight.w500)),
@@ -96,6 +97,7 @@ class FolderTile extends StatelessWidget {
                     Expanded(
                       child: Text(folder.title,
                           style: TextStyle(
+                              fontFamily: 'Gilroy-Medium',
                               fontSize: 15.sp,
                               color: color,
                               fontWeight: FontWeight.w500)),

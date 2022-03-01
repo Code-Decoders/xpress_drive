@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
-import 'package:xpress_drive/ui/auth/login/login_viewmodel.dart';
+import 'package:xpress_drive/ui/auth/create_account/create_account_viewmodel.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
 import 'package:xpress_drive/ui/widget/textfields/textfield.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({Key? key}) : super(key: key);
+class CreateAccountView extends StatelessWidget {
+  const CreateAccountView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
-    return ViewModelBuilder<LoginViewModel>.reactive(
-        viewModelBuilder: () => LoginViewModel(),
+    return ViewModelBuilder<CreateAccountViewModel>.reactive(
+        viewModelBuilder: () => CreateAccountViewModel(),
         builder: (context, model, child) {
           return Scaffold(
             appBar: AppBar(
@@ -34,7 +35,7 @@ class LoginView extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30.w),
                       child: Text(
-                        'Login',
+                        'Create Account',
                         style: TextStyle(
                             fontSize: 30.sp,
                             fontFamily: 'Gilroy-Bold',
@@ -51,29 +52,19 @@ class LoginView extends StatelessWidget {
                         onChanged: model.setUsername,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 30.w),
-                      child: CustomField(
-                        label: 'Password',
-                        hint: 'Enter Password',
-                        value: model.password,
-                        onChanged: model.setPassword,
-                        obscureText: true,
-                      ),
-                    ),
                     Expanded(child: SizedBox.shrink()),
                     Material(
                       color: model.isDiabled
                           ? AppColor.borderColor
                           : AppColor.primaryDark,
                       child: InkWell(
-                        onTap: model.isDiabled ? null : model.login,
+                        onTap: model.isDiabled ? null : model.signup,
                         child: Container(
                           width: double.infinity,
                           height: 60.h,
                           alignment: Alignment.center,
                           child: Text(
-                            'Login',
+                            'Sign Up',
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20.sp,

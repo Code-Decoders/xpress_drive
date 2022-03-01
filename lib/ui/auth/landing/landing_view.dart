@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:stacked/stacked.dart';
 import 'package:xpress_drive/ui/auth/landing/landing_viewmodel.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
+import 'package:xpress_drive/ui/widget/icons/icon.dart';
 
 class LandingView extends StatelessWidget {
   const LandingView({Key? key}) : super(key: key);
@@ -28,60 +29,139 @@ class LandingView extends StatelessWidget {
             SafeArea(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.w),
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(height: 80.h),
-                      Image.asset(
-                        'assets/images/logo.png',
-                        fit: BoxFit.fill,
-                        height: 173.h,
-                      ),
-                      SizedBox(height: 20.h),
-                      Text('Welcome to',
-                          style: TextStyle(
-                            fontSize: 20.sp,
-                            color: AppColor.primary,
-                            fontWeight: FontWeight.w300,
-                          )),
-                      Text(
-                        'Xpress Drive',
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(height: 80.h),
+                    Image.asset(
+                      'assets/images/logo.png',
+                      fit: BoxFit.fill,
+                      height: 173.h,
+                    ),
+                    SizedBox(height: 20.h),
+                    Text('Welcome to',
                         style: TextStyle(
-                          fontSize: 38.sp,
+                          fontFamily: 'Gilroy-Light',
+                          fontSize: 20.sp,
                           color: AppColor.primary,
-                          fontWeight: FontWeight.bold,
-                        ),
+                          fontWeight: FontWeight.w300,
+                        )),
+                    Text(
+                      'Xpress Drive',
+                      style: TextStyle(
+                        fontFamily: 'Gilroy-Bold',
+                        fontSize: 38.sp,
+                        color: AppColor.primary,
+                        fontWeight: FontWeight.bold,
                       ),
-                      SizedBox(height: 10.h),
-                      // Figma Flutter Generator BestcloudstorageplatformforallbusinessandindividualstomanagetheredatajoinforfreeWidget - TEXT
-                      Text(
+                    ),
+                    SizedBox(height: 10.h),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width / 1.5,
+                      child: Text(
                         '''Best cloud storage platform for all business and individuals to manage there data 
 
 Join For Free.''',
                         textAlign: TextAlign.left,
                         style: TextStyle(
+                            fontFamily: 'Gilroy-Medium',
                             color: AppColor.subtitle,
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
                             height: 1.5),
                       ),
-                      SizedBox(height: 40.h),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                              width: 150,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.h),
-                                color: AppColor.primaryDark.withOpacity(.1),
-                              )),
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 40.h),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Material(
+                            borderRadius: BorderRadius.circular(10.h),
+                            color: AppColor.primaryDark.withOpacity(.1),
+                            child: InkWell(
+                              onTap: () {},
+                              borderRadius: BorderRadius.circular(10.h),
+                              child: Container(
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.h),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    AppIcon(
+                                      AppIcons.fingerprint,
+                                      color: AppColor.primaryDark,
+                                      size: 25.h,
+                                    ),
+                                    SizedBox(width: 10.h),
+                                    Text(
+                                      'Smart Id',
+                                      style: TextStyle(
+                                        fontFamily: 'Gilroy-Medium',
+                                        fontSize: 16.sp,
+                                        color: AppColor.primaryDark,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 20.w),
+                        Expanded(
+                          child: Material(
+                            borderRadius: BorderRadius.circular(10.h),
+                            color: AppColor.primaryDark,
+                            child: InkWell(
+                              onTap: model.navigateToLogin,
+                              borderRadius: BorderRadius.circular(10.h),
+                              child: Container(
+                                height: 50.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.h),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Sign In',
+                                      style: TextStyle(
+                                        fontFamily: 'Gilroy-Medium',
+                                        fontSize: 16.sp,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    SizedBox(width: 10.h),
+                                    AppIcon(
+                                      AppIcons.arrow_right,
+                                      color: Colors.white,
+                                      size: 10.h,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Expanded(child: SizedBox.shrink()),
+                    Align(
+                      alignment: Alignment.center,
+                      child: TextButton(
+                          onPressed: model.navigateToCreateAccount,
+                          child: Text(
+                            'Create Account',
+                            style:
+                                TextStyle(fontSize: 16.sp, color: Colors.black),
+                          )),
+                    ),
+                  ],
                 ),
               ),
             ),

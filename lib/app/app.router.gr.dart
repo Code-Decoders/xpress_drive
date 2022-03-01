@@ -21,6 +21,18 @@ class _$AppRouter extends RootStackRouter {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const LandingView());
     },
+    LoginRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const LoginView());
+    },
+    CreateAccountRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const CreateAccountView());
+    },
+    PassGenRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const PassGenView());
+    },
     HomeRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const HomeView());
@@ -48,7 +60,10 @@ class _$AppRouter extends RootStackRouter {
   @override
   List<RouteConfig> get routes => [
         RouteConfig(LandingRoute.name, path: '/'),
-        RouteConfig(HomeRoute.name, path: '/'),
+        RouteConfig(LoginRoute.name, path: '/login'),
+        RouteConfig(CreateAccountRoute.name, path: '/create-account'),
+        RouteConfig(PassGenRoute.name, path: '/pass-gen'),
+        RouteConfig(HomeRoute.name, path: '/home'),
         RouteConfig(CreateFolderRoute.name, path: '/create-folder'),
         RouteConfig(CreateFileRoute.name, path: '/create-File'),
         RouteConfig(FolderRoute.name, path: '/folder')
@@ -64,9 +79,34 @@ class LandingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [LoginView]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute() : super(LoginRoute.name, path: '/login');
+
+  static const String name = 'LoginRoute';
+}
+
+/// generated route for
+/// [CreateAccountView]
+class CreateAccountRoute extends PageRouteInfo<void> {
+  const CreateAccountRoute()
+      : super(CreateAccountRoute.name, path: '/create-account');
+
+  static const String name = 'CreateAccountRoute';
+}
+
+/// generated route for
+/// [PassGenView]
+class PassGenRoute extends PageRouteInfo<void> {
+  const PassGenRoute() : super(PassGenRoute.name, path: '/pass-gen');
+
+  static const String name = 'PassGenRoute';
+}
+
+/// generated route for
 /// [HomeView]
 class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/');
+  const HomeRoute() : super(HomeRoute.name, path: '/home');
 
   static const String name = 'HomeRoute';
 }

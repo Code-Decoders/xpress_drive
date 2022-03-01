@@ -7,12 +7,18 @@ class CustomField extends HookWidget {
   final String label;
   final String? hint;
   final String value;
+  final bool disabled;
+  final bool obscureText;
+  final String? Function(String?)? validator;
   final int maxLines;
   final Function(String)? onChanged;
   const CustomField(
       {Key? key,
       this.onChanged,
+      this.validator,
+      this.disabled = false,
       required this.label,
+      this.obscureText = false,
       this.maxLines = 1,
       this.hint,
       required this.value})
@@ -31,11 +37,15 @@ class CustomField extends HookWidget {
             label,
             style: TextStyle(
                 fontSize: 16.sp,
+                fontFamily: 'Gilroy-Medium',
                 fontWeight: FontWeight.w500,
                 color: AppColor.primary),
           ),
           SizedBox(height: 4.h),
-          TextField(
+          TextFormField(
+            validator: validator,
+            obscureText: obscureText,
+            enabled: !disabled,
             maxLines: maxLines,
             controller: controller,
             onChanged: onChanged,

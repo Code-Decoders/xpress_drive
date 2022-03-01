@@ -36,7 +36,7 @@ class CreateFolderView extends StatelessWidget {
                   child: Text(
                     folder == null ? 'Create Folder' : 'Edit Folder',
                     style:
-                        TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold),
+                        TextStyle(fontSize: 30.sp,fontFamily: 'Gilroy-Bold', fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(height: 30.h),
@@ -64,6 +64,7 @@ class CreateFolderView extends StatelessWidget {
                         'Save',
                         style: TextStyle(
                             color: Colors.white,
+                            fontFamily: 'Gilroy-Bold',
                             fontSize: 20.sp,
                             fontWeight: FontWeight.bold),
                       ),
