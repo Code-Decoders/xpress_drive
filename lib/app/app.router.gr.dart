@@ -17,6 +17,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    LandingRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+          routeData: routeData, child: const LandingView());
+    },
     HomeRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
           routeData: routeData, child: const HomeView());
@@ -43,11 +47,20 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   List<RouteConfig> get routes => [
+        RouteConfig(LandingRoute.name, path: '/'),
         RouteConfig(HomeRoute.name, path: '/'),
         RouteConfig(CreateFolderRoute.name, path: '/create-folder'),
         RouteConfig(CreateFileRoute.name, path: '/create-File'),
         RouteConfig(FolderRoute.name, path: '/folder')
       ];
+}
+
+/// generated route for
+/// [LandingView]
+class LandingRoute extends PageRouteInfo<void> {
+  const LandingRoute() : super(LandingRoute.name, path: '/');
+
+  static const String name = 'LandingRoute';
 }
 
 /// generated route for

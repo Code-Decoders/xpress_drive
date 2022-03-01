@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: "Rebbe Responsa",
       debugShowCheckedModeBanner: false,
       routeInformationParser: router.defaultRouteParser(),
       routerDelegate: AutoRouterDelegate(
@@ -27,6 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       routeInformationProvider: router.routeInfoProvider(),
       theme: ThemeData(
+        fontFamily: 'Gilroy',
         scaffoldBackgroundColor: Colors.white,
       ),
     );

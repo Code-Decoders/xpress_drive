@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:xpress_drive/datamodels/folder.dart';
+import 'package:xpress_drive/ui/auth/landing/landing_view.dart';
 import 'package:xpress_drive/ui/create_file/create_file_view.dart';
 import 'package:xpress_drive/ui/create_folder/create_folder_view.dart';
 import 'package:xpress_drive/ui/folder/folder_view.dart';
@@ -16,6 +17,11 @@ part 'app.router.gr.dart';
     AutoRoute(
       path: '/',
       initial: true,
+      page: LandingView,
+    ),
+    AutoRoute(
+      path: '/',
+
       page: HomeView,
     ),
     AutoRoute(
