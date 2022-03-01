@@ -30,8 +30,10 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const CreateAccountView());
     },
     PassGenRoute.name: (routeData) {
+      final args = routeData.argsAs<PassGenRouteArgs>();
       return AdaptivePage<dynamic>(
-          routeData: routeData, child: const PassGenView());
+          routeData: routeData,
+          child: PassGenView(key: args.key, username: args.username));
     },
     HomeRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
@@ -97,10 +99,26 @@ class CreateAccountRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [PassGenView]
-class PassGenRoute extends PageRouteInfo<void> {
-  const PassGenRoute() : super(PassGenRoute.name, path: '/pass-gen');
+class PassGenRoute extends PageRouteInfo<PassGenRouteArgs> {
+  PassGenRoute({Key? key, required String username})
+      : super(PassGenRoute.name,
+            path: '/pass-gen',
+            args: PassGenRouteArgs(key: key, username: username));
 
   static const String name = 'PassGenRoute';
+}
+
+class PassGenRouteArgs {
+  const PassGenRouteArgs({this.key, required this.username});
+
+  final Key? key;
+
+  final String username;
+
+  @override
+  String toString() {
+    return 'PassGenRouteArgs{key: $key, username: $username}';
+  }
 }
 
 /// generated route for

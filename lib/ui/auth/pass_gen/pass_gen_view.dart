@@ -7,13 +7,14 @@ import 'package:xpress_drive/ui/widget/icons/icon.dart';
 import 'package:xpress_drive/ui/widget/textfields/textfield.dart';
 
 class PassGenView extends StatelessWidget {
-  const PassGenView({Key? key}) : super(key: key);
+  final String username;
+  const PassGenView({Key? key, required this.username}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final formKey = GlobalKey<FormState>();
     return ViewModelBuilder<PassGenViewModel>.reactive(
-        viewModelBuilder: () => PassGenViewModel(),
+        viewModelBuilder: () => PassGenViewModel(username),
         builder: (context, model, child) {
           return Scaffold(
             appBar: AppBar(

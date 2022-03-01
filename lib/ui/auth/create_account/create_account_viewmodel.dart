@@ -20,6 +20,6 @@ class CreateAccountViewModel extends BaseViewModel {
   }
 
   void signup() {
-    locator<AppRouter>().navigate(const PassGenRoute());
+    locator<AppRouter>().navigate(PassGenRoute(username: _username));
   }
 }

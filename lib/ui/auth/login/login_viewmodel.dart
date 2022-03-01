@@ -2,6 +2,8 @@ import 'package:stacked/stacked.dart';
 import 'package:xpress_drive/app/app.locator.dart';
 import 'package:xpress_drive/app/app.router.dart';
 
+import '../../../services/auth_service.dart';
+
 class LoginViewModel extends BaseViewModel {
   String _username = '';
   String _password = '';
@@ -26,8 +28,11 @@ class LoginViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void login() {
-    if (_username == 'admin' && _password == 'admin') {
+  Future<void> login() async {
+    var auth = locator<AuthService>();
+    auth.username = _username;
+    auth.pkey = _password;
+    if (await auth.checkAuth()) {
       locator<AppRouter>().navigate(const HomeRoute());
     }
   }

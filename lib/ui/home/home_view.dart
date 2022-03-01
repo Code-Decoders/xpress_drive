@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
-import 'package:xpress_drive/app/app.locator.dart';
 import 'package:xpress_drive/datamodels/folder.dart';
 import 'package:xpress_drive/ui/home/home_viewmodel.dart';
 import 'package:xpress_drive/ui/widget/tiles/file_tile.dart';
@@ -29,7 +27,7 @@ class HomeView extends StatelessWidget {
         orientation: Orientation.landscape);
     return ViewModelBuilder<HomeViewModel>.reactive(
         viewModelBuilder: () => HomeViewModel(),
-        builder: (context, model, child) {
+        builder: (context, model, child) { 
           print('${model.folders.length} +${model.files.length}');
           return Scaffold(
             drawer: _drawer(model, context),
