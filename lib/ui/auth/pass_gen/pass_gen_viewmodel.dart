@@ -4,6 +4,9 @@ import 'package:stacked/stacked.dart';
 import 'package:xpress_drive/app/app.locator.dart';
 import 'package:xpress_drive/app/app.router.dart';
 import 'package:xpress_drive/services/biometric_service.dart';
+import 'package:xpress_drive/services/ipfs_service.dart';
+
+import '../../../services/auth_service.dart';
 
 class PassGenViewModel extends BaseViewModel {
   String _password = '';
@@ -26,6 +29,15 @@ class PassGenViewModel extends BaseViewModel {
 
   void smartLogin() {
     locator<BiometricService>().storePkey(_username, _password);
+  }
+
+  Future<void> createAcount() async {
+    var auth = locator<AuthService>();
+    auth.username = _username;
+    auth.pkey = _password;
+    if (await locator<IpfsService>().onCreateAccount()) {
+      locator<AppRouter>().navigate(const HomeRoute());
+    }
   }
 
   String getRandomString(int length) {
