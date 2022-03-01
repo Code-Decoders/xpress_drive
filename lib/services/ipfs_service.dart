@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:injectable/injectable.dart';
@@ -26,9 +27,10 @@ class IpfsService {
     final username = auth.username;
     final pkey = auth.pkey;
     var res = await _ipfsClient.mkdir(dir: "/$username");
-    if (res['Error'] != null) {
-      throw Exception(res['Error']);
-      return false;
+    if (res is String) res = json.decode(res);
+    print('res_  ${res.runtimeType}');
+    if (res['Message'] != null) {
+      throw Exception(res['Message']);
     } else {
       Directory tempDir = await getTemporaryDirectory();
       String tempPath = tempDir.path;
