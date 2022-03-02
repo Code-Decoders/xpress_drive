@@ -58,43 +58,6 @@ class PassGenView extends StatelessWidget {
                           Expanded(
                             child: Material(
                               borderRadius: BorderRadius.circular(10.h),
-                              color: AppColor.primaryDark.withOpacity(.1),
-                              child: InkWell(
-                                onTap: () {},
-                                borderRadius: BorderRadius.circular(10.h),
-                                child: Container(
-                                  height: 50.h,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.h),
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      AppIcon(
-                                        AppIcons.fingerprint,
-                                        color: AppColor.primaryDark,
-                                        size: 25.h,
-                                      ),
-                                      SizedBox(width: 10.h),
-                                      Text(
-                                        'Smart Id',
-                                        style: TextStyle(
-                                          fontFamily: 'Gilroy-Medium',
-                                          fontSize: 16.sp,
-                                          color: AppColor.primaryDark,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(width: 20.w),
-                          Expanded(
-                            child: Material(
-                              borderRadius: BorderRadius.circular(10.h),
                               color: AppColor.primaryDark,
                               child: InkWell(
                                 onTap: model.navigateToHome,

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:injectable/injectable.dart';
@@ -28,20 +29,42 @@ class IpfsService {
     final pkey = auth.pkey;
     var res = await _ipfsClient.mkdir(dir: "/$username");
     if (res is String) res = json.decode(res);
-    print('res_  ${res.runtimeType}');
     if (res['Message'] != null) {
       throw Exception(res['Message']);
     } else {
       Directory tempDir = await getTemporaryDirectory();
       String tempPath = tempDir.path;
-      final File file = File('${tempPath}/____file.txt');
+      final File file = File('$tempPath/____file.txt');
       await file.writeAsString(pkey!);
-      print("tempPath $tempPath");
-      print("pkey $pkey");
+      log("tempPath $tempPath");
+      log("pkey $pkey");
       File fileEncrypted = await encryption.encrypt(file.path);
-      // await encryption.decrypt(file.path);
       _ipfsClient.write(dir: "/$username/pkey", filePath: fileEncrypted.path);
       return true;
+    }
+  }
+
+  Future<bool> onSignIn() async {
+    final auth = locator<AuthService>();
+    final encryption = locator<EncryptionService>();
+    var res = await _ipfsClient.getAllDirectories(dir: "/${auth.username}");
+    if (res is String) res = json.decode(res);
+    if (res['Message'] != null) {
+      throw Exception(res['Message']);
+    } else {
+      Directory tempDir = await getTemporaryDirectory();
+      String tempPath = tempDir.path;
+      final File file = File('$tempPath/____file.txt');
+      var bytes = await _ipfsClient.read(dir: "/${auth.username}/pkey");
+      file.writeAsBytesSync(bytes['data']);
+      try {
+        File deFile = await encryption.decrypt(file.path);
+        String pkey = await deFile.readAsString();
+        auth.pkey = pkey;
+        return true;
+      } catch (e) {
+        throw Exception("Invalid password");
+      }
     }
   }
 }

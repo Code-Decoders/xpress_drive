@@ -45,7 +45,7 @@ class CustomField extends HookWidget {
           TextFormField(
             validator: validator,
             obscureText: obscureText,
-            enabled: !disabled,
+            readOnly: disabled,
             maxLines: maxLines,
             controller: controller,
             onChanged: onChanged,

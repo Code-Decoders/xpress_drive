@@ -80,7 +80,7 @@ Join For Free.''',
                             borderRadius: BorderRadius.circular(10.h),
                             color: AppColor.primaryDark.withOpacity(.1),
                             child: InkWell(
-                              onTap: () {},
+                              onTap: model.smartId,
                               borderRadius: BorderRadius.circular(10.h),
                               child: Container(
                                 height: 50.h,

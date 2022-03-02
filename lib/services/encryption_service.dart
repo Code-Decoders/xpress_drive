@@ -13,7 +13,6 @@ class EncryptionService {
       key: "${_auth.pkey}",
       iv: 16,
       dir: "",
-      // useCompress: true,
     );
     return await fileCryptor.encrypt(inputFile: filePath, outputFile: filePath);
   }
@@ -23,8 +22,7 @@ class EncryptionService {
       key: "${_auth.pkey}",
       iv: 16,
       dir: "",
-      // useCompress: true,
     );
-    return await fileCryptor.encrypt(inputFile: filePath, outputFile: filePath);
+    return await fileCryptor.decrypt(inputFile: filePath, outputFile: filePath);
   }
 }

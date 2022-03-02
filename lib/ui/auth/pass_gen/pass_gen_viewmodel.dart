@@ -25,19 +25,15 @@ class PassGenViewModel extends BaseViewModel {
 
   void navigateToHome() {
     createAcount();
-    // navigate to home
-    // locator<AppRouter>().push(const HomeRoute());
-  }
-
-  void smartLogin() {
-    locator<BiometricService>().storePkey(_username, _password);
   }
 
   Future<void> createAcount() async {
     var auth = locator<AuthService>();
     auth.username = _username;
     auth.pkey = _password;
+
     if (await locator<IpfsService>().onCreateAccount()) {
+      await locator<BiometricService>().storePkey(_username, _password);
       locator<AppRouter>().navigate(const HomeRoute());
     }
   }

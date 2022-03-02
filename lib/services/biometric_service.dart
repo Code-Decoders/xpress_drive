@@ -34,13 +34,13 @@ class BiometricService {
   }
 
   Future<List<String?>?> getKey() async {
-    var source;
+    String? source;
     final response = await BiometricStorage().canAuthenticate();
     if (response != CanAuthenticateResponse.success) {
       // panic..
       return null;
     } else {
-      source = await (await BiometricStorage().getStorage(
+      var storage = await BiometricStorage().getStorage(
         'pkey',
         promptInfo: const PromptInfo(
           androidPromptInfo: AndroidPromptInfo(
@@ -51,12 +51,11 @@ class BiometricService {
             negativeButton: 'Cancel',
           ),
         ),
-      ))
-          .read()
-          .catchError((e) {
+      );
+      source = await storage.read().catchError((e) {
         return null;
       });
-      return jsonDecode(source);
+      return List<String?>.from(jsonDecode(source!));
     }
   }
 }

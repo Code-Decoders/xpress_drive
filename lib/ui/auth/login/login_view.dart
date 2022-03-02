@@ -67,7 +67,7 @@ class LoginView extends StatelessWidget {
                           ? AppColor.borderColor
                           : AppColor.primaryDark,
                       child: InkWell(
-                        onTap: model.isDiabled ? null : model.login,
+                        onTap: model.login,
                         child: Container(
                           width: double.infinity,
                           height: 60.h,

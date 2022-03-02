@@ -29,6 +29,7 @@ class LoginViewModel extends BaseViewModel {
   }
 
   Future<void> login() async {
+    print("trst");
     var auth = locator<AuthService>();
     auth.username = _username;
     auth.pkey = _password;
