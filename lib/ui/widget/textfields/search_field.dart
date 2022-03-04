@@ -31,6 +31,7 @@ class SearchField extends HookWidget {
         ),
         cursorColor: AppColor.primary,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(horizontal: 12),
           hintText: hint,
           hintStyle: TextStyle(
             fontSize: 16.sp,
