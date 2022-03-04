@@ -119,7 +119,10 @@ class HomeViewModel extends BaseViewModel {
 
   void navigateToLanding() {
     locator<AppRouter>().popTop();
-    locator<AppRouter>().push(const LandingRoute());
+    locator<AppRouter>().pushAndPopUntil(
+      const LandingRoute(),
+      predicate: (route) => false,
+    );
   }
 
   void navigateToCreateFolder() async {
