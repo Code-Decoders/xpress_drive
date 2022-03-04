@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:stacked/stacked.dart';
 import 'package:xpress_drive/app/app.enums.dart';
+import 'package:xpress_drive/ui/about/AboutUs.dart';
 import 'package:xpress_drive/ui/home/home_viewmodel.dart';
 import 'package:xpress_drive/ui/widget/tiles/file_tile.dart';
 import 'package:xpress_drive/ui/widget/tiles/folder_tile.dart';
@@ -11,6 +12,9 @@ import 'package:xpress_drive/ui/widget/dropdown/dropdown.dart';
 import 'package:xpress_drive/ui/widget/icons/icon.dart';
 import 'package:xpress_drive/ui/widget/textfields/search_field.dart';
 import 'package:xpress_drive/ui/widget/tiles/menu_tile.dart';
+
+import '../../app/app.locator.dart';
+import '../../services/auth_service.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -242,7 +246,7 @@ class HomeView extends StatelessWidget {
             children: [
               Container(
                 height: 107.h,
-                width: 210.h,
+                width: 225.h,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius:
@@ -264,23 +268,23 @@ class HomeView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Kunal Jain',
+                            'Welcome ${locator<AuthService>().username}',
                             style: TextStyle(
                               fontFamily: 'Gilroy-Medium',
-                              fontSize: 16.sp,
+                              fontSize: 14.sp,
                               fontWeight: FontWeight.w500,
                               color: AppColor.primary,
                             ),
                           ),
-                          Text(
-                            'Gujarat, India',
-                            style: TextStyle(
-                              fontFamily: 'Gilroy-Medium',
-                              fontSize: 10.sp,
-                              fontWeight: FontWeight.w500,
-                              color: AppColor.primary,
-                            ),
-                          ),
+                          // Text(
+                          //   'Gujarat, India',
+                          //   style: TextStyle(
+                          //     fontFamily: 'Gilroy-Medium',
+                          //     fontSize: 10.sp,
+                          //     fontWeight: FontWeight.w500,
+                          //     color: AppColor.primary,
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],
@@ -311,12 +315,22 @@ class HomeView extends StatelessWidget {
             height: 108.h,
           ),
           MenuTile(path: 'home', title: 'Home'),
-          MenuTile(path: 'profile', title: 'Profile'),
-          MenuTile(path: 'storage', title: 'Storage'),
-          MenuTile(path: 'shared', title: 'Shared'),
-          MenuTile(path: 'stats', title: 'Stats'),
-          MenuTile(path: 'settings', title: 'Settings'),
-          MenuTile(path: 'help', title: 'Help'),
+          MenuTile(
+            path: 'profile',
+            title: 'About Us',
+            onTap: () {
+              // CodeDecoders
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AboutUs()),
+              );
+            },
+          ),
+          // MenuTile(path: 'storage', title: 'Storage'),
+          // MenuTile(path: 'shared', title: 'Shared'),
+          // MenuTile(path: 'stats', title: 'Stats'),
+          // MenuTile(path: 'settings', title: 'Settings'),
+          // MenuTile(path: 'help', title: 'Help'),
           const Expanded(child: SizedBox.shrink()),
           Padding(
             padding: EdgeInsets.fromLTRB(30.w, 0, 0, 62.h),
