@@ -1,16 +1,20 @@
-# xpress_drive
+# Xpress Drive
 
-A new Flutter project.
+A decentralised and end to end encrypted cloud storage solution .
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+### `Tech Stack`
+* Flutter (Frontend)
+* IPFS
+* Figma (UI Design)
 
-A few resources to get you started if this is your first Flutter project:
+--- 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### `Library Developed`
+The important libraries we used to make this projects are,
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* [ipfs_client_flutter](https://pub.dev/packages/ipfs_client_flutter) : We have developed a flutter library called [ipfs_client_flutter](https://pub.dev/packages/ipfs_client_flutter) which is built using [HTTP RPC API](https://docs.ipfs.io/reference/http/api/).
+
+* [file_cryptor](https://pub.dev/packages/file_cryptor): Aes encryption and decryption of files.
+* [biometric_storage](https://pub.dev/packages/biometric_storage): Login into app using fingerprint. 
