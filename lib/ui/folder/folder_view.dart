@@ -39,44 +39,63 @@ class FolderView extends StatelessWidget {
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : ListView.builder(
-                    padding: EdgeInsets.fromLTRB(30.w, 20.h, 30.w, 0),
-                    itemBuilder: (context, index) {
-                      if (index < model.subFolders.length) {
-                        return FolderTile(
-                          view: View.List,
-                          folder: model.subFolders[index],
-                          onTap: () {
-                            model.navigateToFolder(index);
-                          },
-                          onEdit: () {
-                            model.navigateToEditFolder(index);
-                          },
-                          onDelete: () {
-                            model.onDelete(index);
-                          },
-                          color: (index + 1) % 4 == 0
-                              ? AppColor.green
-                              : (index + 1) % 4 == 3
-                                  ? AppColor.red
-                                  : (index + 1) % 4 == 2
-                                      ? AppColor.yellow
-                                      : AppColor.primaryDark,
-                        );
-                      }
-                      return FileTile(
-                        view: View.List,
-                        onTap: () => model.openFile(
-                            model.files[index - model.subFolders.length]),
-                        file: model.files[index - model.subFolders.length],
-                        color: color,
-                        onDelete: () {
-                          model.deleteFile(index - model.subFolders.length);
+                : model.files.isEmpty && model.subFolders.isEmpty
+                    ? Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Image.asset('assets/images/empty-folder.png',
+                                color: color, height: 100.sp),
+                            const SizedBox(height: 10),
+                            Text(
+                              'No files or folders found',
+                              style: TextStyle(
+                                  fontFamily: 'Gilroy-Medium',
+                                  fontSize: 18.sp,
+                                  color: color,
+                                  fontWeight: FontWeight.w500),
+                            )
+                          ],
+                        ),
+                      )
+                    : ListView.builder(
+                        padding: EdgeInsets.fromLTRB(30.w, 20.h, 30.w, 0),
+                        itemBuilder: (context, index) {
+                          if (index < model.subFolders.length) {
+                            return FolderTile(
+                              view: View.List,
+                              folder: model.subFolders[index],
+                              onTap: () {
+                                model.navigateToFolder(index);
+                              },
+                              onEdit: () {
+                                model.navigateToEditFolder(index);
+                              },
+                              onDelete: () {
+                                model.onDelete(index);
+                              },
+                              color: (index + 1) % 4 == 0
+                                  ? AppColor.green
+                                  : (index + 1) % 4 == 3
+                                      ? AppColor.red
+                                      : (index + 1) % 4 == 2
+                                          ? AppColor.yellow
+                                          : AppColor.primaryDark,
+                            );
+                          }
+                          return FileTile(
+                            view: View.List,
+                            onTap: () => model.openFile(
+                                model.files[index - model.subFolders.length]),
+                            file: model.files[index - model.subFolders.length],
+                            color: color,
+                            onDelete: () {
+                              model.deleteFile(index - model.subFolders.length);
+                            },
+                          );
                         },
-                      );
-                    },
-                    itemCount: model.files.length + model.subFolders.length,
-                  ),
+                        itemCount: model.files.length + model.subFolders.length,
+                      ),
             floatingActionButton: SpeedDial(
               direction: SpeedDialDirection.up,
               children: [

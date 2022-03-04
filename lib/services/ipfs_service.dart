@@ -79,20 +79,24 @@ class IpfsService {
 
   Future getDirectory(String path) async {
     var res = await _ipfsClient.ls(dir: path);
-    final entries = List<Map<String, dynamic>>.from(
-        (jsonDecode(res['data']) ?? Map.from({}))['Entries']);
-    List<Map<String, dynamic>> data = await Future.wait(entries.map((e) async {
-      var res = await _ipfsClient.stat(dir: "$path/${e['Name']}");
-      if (res is String) res = json.decode(res);
-      if (res['Message'] != null) {
-        throw Exception(res['Message']);
-      } else {
-        var json = jsonDecode(res['data']);
-        return {...e, ...json};
-      }
-    }));
-    data.removeWhere((element) => element['Name'] == 'pkey');
-    return List<Map<String, dynamic>>.from(data);
+    if (res is Map) {
+      final entries =
+          List<Map<String, dynamic>>.from(jsonDecode(res['data'])['Entries']);
+      List<Map<String, dynamic>> data =
+          await Future.wait(entries.map((e) async {
+        var res = await _ipfsClient.stat(dir: "$path/${e['Name']}");
+        if (res is String) res = json.decode(res);
+        if (res['Message'] != null) {
+          throw Exception(res['Message']);
+        } else {
+          var json = jsonDecode(res['data']);
+          return {...e, ...json};
+        }
+      }));
+      data.removeWhere((element) => element['Name'] == 'pkey');
+      return List<Map<String, dynamic>>.from(data);
+    }
+    return [];
   }
 
   Future<void> uploadFile(String dir, String filePath) async {

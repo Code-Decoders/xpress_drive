@@ -123,55 +123,81 @@ class HomeView extends StatelessWidget {
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )
-                          : GridView.builder(
-                              padding: EdgeInsets.symmetric(vertical: 30.h),
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount:
-                                          model.view == View.List ? 1 : 2,
-                                      childAspectRatio:
-                                          model.view == View.Grid ? 1.37 : 5,
-                                      crossAxisSpacing: 20.h,
-                                      mainAxisSpacing:
-                                          model.view == View.List ? 0 : 20.h),
-                              itemBuilder: (context, index) {
-                                if (index < model.folders.length) {
-                                  return FolderTile(
-                                    view: model.view,
-                                    folder: model.folders[index],
-                                    onTap: () {
-                                      model.navigateToFolder(index);
-                                    },
-                                    onEdit: () {
-                                      model.navigateToEditFolder(index);
-                                    },
-                                    onDelete: () {
-                                      model.onDelete(index);
-                                    },
-                                    color: (index + 1) % 4 == 0
-                                        ? AppColor.green
-                                        : (index + 1) % 4 == 3
-                                            ? AppColor.red
-                                            : (index + 1) % 4 == 2
-                                                ? AppColor.yellow
-                                                : AppColor.primaryDark,
-                                  );
-                                }
-                                return FileTile(
-                                  view: model.view,
-                                  onTap: ()=> model.openFile( model.files[index - model.folders.length]),
-                                  file:
-                                      model.files[index - model.folders.length],
-                                  color: AppColor.primary,
-                                  onDelete: () {
-                                    model.deleteFile(
-                                        index - model.folders.length);
+                          : model.files.isEmpty && model.folders.isEmpty
+                              ? Center(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: <Widget>[
+                                      Image.asset(
+                                          'assets/images/empty-folder.png',
+                                          color: AppColor.primary,
+                                          height: 100.sp),
+                                      const SizedBox(height: 10),
+                                      Text(
+                                        'No files or folders found',
+                                        style: TextStyle(
+                                            fontFamily: 'Gilroy-Medium',
+                                            fontSize: 18.sp,
+                                            color: AppColor.primary,
+                                            fontWeight: FontWeight.w500),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              : GridView.builder(
+                                  padding: EdgeInsets.symmetric(vertical: 30.h),
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount:
+                                              model.view == View.List ? 1 : 2,
+                                          childAspectRatio:
+                                              model.view == View.Grid
+                                                  ? 1.37
+                                                  : 5,
+                                          crossAxisSpacing: 20.h,
+                                          mainAxisSpacing:
+                                              model.view == View.List
+                                                  ? 0
+                                                  : 20.h),
+                                  itemBuilder: (context, index) {
+                                    if (index < model.folders.length) {
+                                      return FolderTile(
+                                        view: model.view,
+                                        folder: model.folders[index],
+                                        onTap: () {
+                                          model.navigateToFolder(index);
+                                        },
+                                        onEdit: () {
+                                          model.navigateToEditFolder(index);
+                                        },
+                                        onDelete: () {
+                                          model.onDelete(index);
+                                        },
+                                        color: (index + 1) % 4 == 0
+                                            ? AppColor.green
+                                            : (index + 1) % 4 == 3
+                                                ? AppColor.red
+                                                : (index + 1) % 4 == 2
+                                                    ? AppColor.yellow
+                                                    : AppColor.primaryDark,
+                                      );
+                                    }
+                                    return FileTile(
+                                      view: model.view,
+                                      onTap: () => model.openFile(model
+                                          .files[index - model.folders.length]),
+                                      file: model
+                                          .files[index - model.folders.length],
+                                      color: AppColor.primary,
+                                      onDelete: () {
+                                        model.deleteFile(
+                                            index - model.folders.length);
+                                      },
+                                    );
                                   },
-                                );
-                              },
-                              itemCount:
-                                  model.folders.length + model.files.length,
-                            ),
+                                  itemCount:
+                                      model.folders.length + model.files.length,
+                                ),
                     )
                   ],
                 ),
