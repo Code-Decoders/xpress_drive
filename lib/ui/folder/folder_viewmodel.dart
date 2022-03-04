@@ -115,4 +115,9 @@ class FolderViewModel extends BaseViewModel {
     _subFolders = res.where((e) => e['Type'] == 'directory').toList();
     setBusy(false);
   }
+
+   openFile(Map<String, dynamic> file,) {
+    var auth = locator<AuthService>();
+    locator<IpfsService>().openFile('$_path/${_folder['Name']}/${file['Name']}');
+  }
 }

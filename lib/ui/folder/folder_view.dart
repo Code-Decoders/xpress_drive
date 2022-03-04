@@ -62,6 +62,8 @@ class FolderView extends StatelessWidget {
                 }
                 return FileTile(
                   view: View.List,
+                  onTap: () => model
+                      .openFile(model.files[index - model.subFolders.length]),
                   file: model.files[index - model.subFolders.length],
                   color: color,
                   onDelete: () {

@@ -40,9 +40,7 @@ class CreateFileViewModel extends BaseViewModel {
   void setUploadFile(io.File file, TextEditingController controller) {
     _uploadFile = file;
     if ((_file['Name'] ?? '').isEmpty || controller.text.isEmpty) {
-      _file['Name'] = (_uploadFile!.path.split('/').last.split(".")
-            ..removeLast())
-          .join(".");
+      _file['Name'] = _uploadFile!.path.split('/').last;
       controller.text = _file['Name'];
       print(_file['Name']);
       notifyListeners();

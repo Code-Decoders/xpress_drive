@@ -42,7 +42,7 @@ class FileTile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Image.network(
-                          'https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_${file['Name'].split('.').length < 2 ? '' : (file['Name'].split('.')[1])}-128.png',
+                          'https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_${file['Name'].split('.').length < 2 ? '' : (file['Name'].split('.').last)}-128.png',
                           height: 40.h,
                           width: 40.h,
                           errorBuilder: (_, __, ___) => Image.network(
@@ -73,6 +73,7 @@ class FileTile extends StatelessWidget {
                     ),
                     SizedBox(height: 14.h),
                     Text(file['Name'],
+                    overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             fontFamily: 'Gilroy-Medium',
                             fontSize: 15.sp,
@@ -85,7 +86,7 @@ class FileTile extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.only(right: 16.w),
                         child: Image.network(
-                          'https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_${file['Name'].split('.').length < 2 ? '' : (file['Name'].split('.')[1])}-128.png',
+                          'https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_${file['Name'].split('.').length < 2 ? '' : (file['Name'].split('.').last)}-128.png',
                           height: 30.h,
                           width: 30.h,
                           errorBuilder: (_, __, ___) => Image.network(

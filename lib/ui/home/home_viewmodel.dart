@@ -163,4 +163,9 @@ class HomeViewModel extends BaseViewModel {
     _folders = res.where((e) => e['Type'] == 'directory').toList();
     setBusy(false);
   }
+
+  openFile(Map<String, dynamic> file) {
+    var auth = locator<AuthService>();
+    locator<IpfsService>().openFile('/${auth.username}/${file['Name']}');
+  }
 }

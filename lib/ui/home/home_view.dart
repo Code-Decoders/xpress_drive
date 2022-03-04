@@ -159,6 +159,7 @@ class HomeView extends StatelessWidget {
                                 }
                                 return FileTile(
                                   view: model.view,
+                                  onTap: ()=> model.openFile( model.files[index - model.folders.length]),
                                   file:
                                       model.files[index - model.folders.length],
                                   color: AppColor.primary,

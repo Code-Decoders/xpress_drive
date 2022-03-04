@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ipfs_client_flutter/ipfs_client_flutter.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:xpress_drive/app/app.locator.dart';
 import 'package:xpress_drive/services/auth_service.dart';
@@ -118,5 +119,19 @@ class IpfsService {
     EasyLoading.show(status: "Renaming...");
     await _ipfsClient.mv(oldPath: oldPath, newPath: newPath);
     EasyLoading.showSuccess("Renamed");
+  }
+
+  Future<void> openFile(String path) async {
+    EasyLoading.show(status: "Opening file...");
+    var encBytes = await _ipfsClient.read(dir: path);
+    var name = path.split("/").last;
+    Directory tempDir = await getTemporaryDirectory();
+    String tempPath = tempDir.path;
+    final File tempfile = File('$tempPath/$name');
+    await tempfile.writeAsBytes(encBytes['data']);
+    var file = await locator<EncryptionService>().decrypt(tempfile.path);
+    print(file.path);
+    EasyLoading.dismiss();
+    OpenFile.open(file.path);
   }
 }
