@@ -12,6 +12,7 @@ class CustomField extends HookWidget {
   final String? Function(String?)? validator;
   final int maxLines;
   final Function(String)? onChanged;
+  final TextEditingController? controller;
   const CustomField(
       {Key? key,
       this.onChanged,
@@ -21,13 +22,13 @@ class CustomField extends HookWidget {
       this.obscureText = false,
       this.maxLines = 1,
       this.hint,
+      this.controller,
       required this.value})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = useTextEditingController(text: value);
-    print(value);
+    final _controller = useTextEditingController(text: value);
     return Padding(
       padding: EdgeInsets.only(bottom: 30.h),
       child: Column(
@@ -47,7 +48,7 @@ class CustomField extends HookWidget {
             obscureText: obscureText,
             readOnly: disabled,
             maxLines: maxLines,
-            controller: controller,
+            controller: controller??_controller,
             onChanged: onChanged,
             decoration: InputDecoration(
               hintText: hint,

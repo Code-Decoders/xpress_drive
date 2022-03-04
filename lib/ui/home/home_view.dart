@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:stacked/stacked.dart';
-import 'package:xpress_drive/datamodels/folder.dart';
+import 'package:xpress_drive/app/app.enums.dart';
 import 'package:xpress_drive/ui/home/home_viewmodel.dart';
 import 'package:xpress_drive/ui/widget/tiles/file_tile.dart';
 import 'package:xpress_drive/ui/widget/tiles/folder_tile.dart';
@@ -27,7 +27,7 @@ class HomeView extends StatelessWidget {
         orientation: Orientation.landscape);
     return ViewModelBuilder<HomeViewModel>.reactive(
         viewModelBuilder: () => HomeViewModel(),
-        builder: (context, model, child) { 
+        builder: (context, model, child) {
           print('${model.folders.length} +${model.files.length}');
           return Scaffold(
             drawer: _drawer(model, context),
@@ -119,79 +119,85 @@ class HomeView extends StatelessWidget {
                       ],
                     ),
                     Expanded(
-                      child: GridView.builder(
-                        padding: EdgeInsets.symmetric(vertical: 30.h),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: model.view == View.List ? 1 : 2,
-                            childAspectRatio:
-                                model.view == View.Grid ? 1.37 : 5,
-                            crossAxisSpacing: 20.h,
-                            mainAxisSpacing:
-                                model.view == View.List ? 0 : 20.h),
-                        itemBuilder: (context, index) {
-                          if (index < model.folders.length)
-                            return FolderTile(
-                              view: model.view,
-                              folder: model.folders[index],
-                              onTap: () {
-                                model.navigateToFolder(index);
+                      child: model.isBusy
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : GridView.builder(
+                              padding: EdgeInsets.symmetric(vertical: 30.h),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount:
+                                          model.view == View.List ? 1 : 2,
+                                      childAspectRatio:
+                                          model.view == View.Grid ? 1.37 : 5,
+                                      crossAxisSpacing: 20.h,
+                                      mainAxisSpacing:
+                                          model.view == View.List ? 0 : 20.h),
+                              itemBuilder: (context, index) {
+                                if (index < model.folders.length) {
+                                  return FolderTile(
+                                    view: model.view,
+                                    folder: model.folders[index],
+                                    onTap: () {
+                                      model.navigateToFolder(index);
+                                    },
+                                    onEdit: () {
+                                      model.navigateToEditFolder(index);
+                                    },
+                                    onDelete: () {
+                                      model.onDelete(index);
+                                    },
+                                    color: (index + 1) % 4 == 0
+                                        ? AppColor.green
+                                        : (index + 1) % 4 == 3
+                                            ? AppColor.red
+                                            : (index + 1) % 4 == 2
+                                                ? AppColor.yellow
+                                                : AppColor.primaryDark,
+                                  );
+                                }
+                                return FileTile(
+                                  view: model.view,
+                                  file:
+                                      model.files[index - model.folders.length],
+                                  color: AppColor.primary,
+                                  onDelete: () {
+                                    model.deleteFile(
+                                        index - model.folders.length);
+                                  },
+                                );
                               },
-                              onEdit: () {
-                                model.navigateToEditFolder(index);
-                              },
-                              onDelete: () {
-                                model.onDelete(index);
-                              },
-                              color: (index + 1) % 4 == 0
-                                  ? AppColor.green
-                                  : (index + 1) % 4 == 3
-                                      ? AppColor.red
-                                      : (index + 1) % 4 == 2
-                                          ? AppColor.yellow
-                                          : AppColor.primaryDark,
-                            );
-                          return FileTile(
-                            view: model.view,
-                            file: model.files[index - model.folders.length],
-                            color: AppColor.primary,
-                            onDelete: () {
-                              model.deleteFile(index - model.folders.length);
-                            },
-                          );
-                        },
-                        itemCount: model.folders.length + model.files.length,
-                      ),
+                              itemCount:
+                                  model.folders.length + model.files.length,
+                            ),
                     )
                   ],
                 ),
               ),
             ),
             floatingActionButton: SpeedDial(
-              direction: SpeedDialDirection.left,
+              direction: SpeedDialDirection.up,
               children: [
                 SpeedDialChild(
                     child: const Icon(
-                      Icons.add,
+                      Icons.create_new_folder_outlined,
                     ),
                     backgroundColor: AppColor.primary,
                     foregroundColor: Colors.white,
-                    label: 'Folder',
+                    label: 'Create Folder',
                     onTap: model.navigateToCreateFolder),
                 SpeedDialChild(
-                  child: const Icon(Icons.add),
+                  child: const Icon(Icons.upload_file_outlined),
                   backgroundColor: AppColor.primary,
                   foregroundColor: Colors.white,
-                  label: 'File',
+                  label: 'Upload File',
                   onTap: model.navigateToCreateFile,
                 ),
               ],
               backgroundColor: AppColor.primary,
               activeIcon: Icons.menu,
-              child: Icon(
-                Icons.add,
-                size: 19.h,
-                color: Colors.white,
-              ),
+              icon: Icons.add,
             ),
           );
         });

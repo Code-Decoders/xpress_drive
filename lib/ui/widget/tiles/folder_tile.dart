@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:xpress_drive/app/app.enums.dart';
 import 'package:xpress_drive/app/app.locator.dart';
 import 'package:xpress_drive/app/app.router.dart';
-import 'package:xpress_drive/datamodels/folder.dart';
 import 'package:xpress_drive/ui/widget/icons/icon.dart';
 
 class FolderTile extends StatelessWidget {
   final Color color;
-  final Folder folder;
+  final Map<String,dynamic> folder;
   final VoidCallback? onTap;
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
@@ -76,7 +76,7 @@ class FolderTile extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 14.h),
-                    Text(folder.title,
+                    Text(folder['Name'],
                         style: TextStyle(
                             fontFamily: 'Gilroy-Medium',
                             fontSize: 15.sp,
@@ -95,7 +95,7 @@ class FolderTile extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: Text(folder.title,
+                      child: Text(folder['Name'],
                           style: TextStyle(
                               fontFamily: 'Gilroy-Medium',
                               fontSize: 15.sp,

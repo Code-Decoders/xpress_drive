@@ -2,19 +2,28 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
-import 'package:xpress_drive/datamodels/file.dart';
 import 'package:xpress_drive/ui/create_file/create_file_viewmodel.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
 import 'package:xpress_drive/ui/widget/textfields/textfield.dart';
 import 'dart:io' as io;
 
 class CreateFileView extends StatelessWidget {
-  const CreateFileView({Key? key}) : super(key: key);
+  final String path;
+  const CreateFileView({Key? key, required this.path}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
     return ViewModelBuilder<CreateFileViewModel>.reactive(
-        viewModelBuilder: () => CreateFileViewModel(),
+        viewModelBuilder: () => CreateFileViewModel(path),
+        onModelReady: (model) async {
+          FilePickerResult? result = await FilePicker.platform.pickFiles();
+
+          if (result != null) {
+            io.File file = io.File(result.files.single.path!);
+            model.setUploadFile(file, controller);
+          }
+        },
         builder: (context, model, child) {
           return Scaffold(
             appBar: AppBar(
@@ -36,8 +45,10 @@ class CreateFileView extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Text(
                     'Create File',
-                    style:
-                        TextStyle(fontSize: 30.sp,fontFamily: 'Gilroy-Bold', fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 30.sp,
+                        fontFamily: 'Gilroy-Bold',
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(height: 30.h),
@@ -46,8 +57,9 @@ class CreateFileView extends StatelessWidget {
                   child: CustomField(
                     label: 'File Name',
                     hint: 'Enter File Name',
-                    value: model.file.title,
+                    value: model.file['Name'] ?? '',
                     onChanged: model.setFile,
+                    controller: controller,
                   ),
                 ),
                 Padding(
@@ -60,7 +72,7 @@ class CreateFileView extends StatelessWidget {
 
                         if (result != null) {
                           io.File file = io.File(result.files.single.path!);
-                          model.setUploadFile(file);
+                          model.setUploadFile(file, controller);
                         }
                       },
                       child: Container(
@@ -88,7 +100,7 @@ class CreateFileView extends StatelessWidget {
                                   Text(
                                     'Add File',
                                     style: TextStyle(
-                                      fontFamily: 'Gilroy-Medium',
+                                        fontFamily: 'Gilroy-Medium',
                                         fontSize: 16.sp,
                                         fontWeight: FontWeight.w500,
                                         color: AppColor.primaryDark),

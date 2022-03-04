@@ -16,7 +16,6 @@ class LandingViewModel extends BaseViewModel {
     var auth = locator<AuthService>();
     auth.username = userInfo?.first;
     auth.pkey = userInfo?.last;
-
     if (await auth.checkAuth()) {
       locator<AppRouter>().push(const HomeRoute());
     }

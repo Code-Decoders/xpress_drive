@@ -46,7 +46,7 @@ class PassGenView extends StatelessWidget {
                       SizedBox(height: 30.h),
                       CustomField(
                         label:
-                            'Please note note down the below private key somewhere safe. In case the private key gets lost, there is no way to reaccess it.',
+                            'Please note down the below private key somewhere safe. In case the private key gets lost, there is no way to reaccess it.',
                         hint: 'Enter Username',
                         disabled: true,
                         value: model.password,

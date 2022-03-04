@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:xpress_drive/datamodels/folder.dart';
 import 'package:xpress_drive/ui/auth/create_account/create_account_view.dart';
 import 'package:xpress_drive/ui/auth/landing/landing_view.dart';
 import 'package:xpress_drive/ui/auth/login/login_view.dart';

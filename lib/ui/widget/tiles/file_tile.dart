@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:xpress_drive/app/app.enums.dart';
 import 'package:xpress_drive/app/app.locator.dart';
 import 'package:xpress_drive/app/app.router.dart';
-import 'package:xpress_drive/datamodels/file.dart';
-import 'package:xpress_drive/datamodels/folder.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
 import 'package:xpress_drive/ui/widget/icons/icon.dart';
 
 class FileTile extends StatelessWidget {
-  final File file;
+  final Map<String, dynamic> file;
   final Color color;
   final View view;
   final VoidCallback? onTap;
@@ -43,7 +42,7 @@ class FileTile extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Image.network(
-                          'https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_${file.title.split('.')[1]}-128.png',
+                          'https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_${file['Name'].split('.').length < 2 ? '' : (file['Name'].split('.')[1])}-128.png',
                           height: 40.h,
                           width: 40.h,
                           errorBuilder: (_, __, ___) => Image.network(
@@ -73,7 +72,7 @@ class FileTile extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 14.h),
-                    Text(file.title,
+                    Text(file['Name'],
                         style: TextStyle(
                             fontFamily: 'Gilroy-Medium',
                             fontSize: 15.sp,
@@ -86,7 +85,7 @@ class FileTile extends StatelessWidget {
                     Padding(
                         padding: EdgeInsets.only(right: 16.w),
                         child: Image.network(
-                          'https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_${file.title.split('.')[1]}-128.png',
+                          'https://cdn2.iconfinder.com/data/icons/file-formats-3-1/100/file_formats3_${file['Name'].split('.').length < 2 ? '' : (file['Name'].split('.')[1])}-128.png',
                           height: 30.h,
                           width: 30.h,
                           errorBuilder: (_, __, ___) => Image.network(
@@ -96,7 +95,7 @@ class FileTile extends StatelessWidget {
                           ),
                         )),
                     Expanded(
-                      child: Text(file.title,
+                      child: Text(file['Name'],
                           style: TextStyle(
                               fontFamily: 'Gilroy-Medium',
                               fontSize: 15.sp,

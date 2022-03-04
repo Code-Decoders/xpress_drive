@@ -40,22 +40,27 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const HomeView());
     },
     CreateFolderRoute.name: (routeData) {
-      final args = routeData.argsAs<CreateFolderRouteArgs>(
-          orElse: () => const CreateFolderRouteArgs());
+      final args = routeData.argsAs<CreateFolderRouteArgs>();
       return AdaptivePage<dynamic>(
           routeData: routeData,
-          child: CreateFolderView(key: args.key, folder: args.folder));
+          child: CreateFolderView(
+              key: args.key, folder: args.folder, path: args.path));
     },
     CreateFileRoute.name: (routeData) {
+      final args = routeData.argsAs<CreateFileRouteArgs>();
       return AdaptivePage<dynamic>(
-          routeData: routeData, child: const CreateFileView());
+          routeData: routeData,
+          child: CreateFileView(key: args.key, path: args.path));
     },
     FolderRoute.name: (routeData) {
       final args = routeData.argsAs<FolderRouteArgs>();
       return AdaptivePage<dynamic>(
           routeData: routeData,
           child: FolderView(
-              key: args.key, folder: args.folder, color: args.color));
+              key: args.key,
+              folder: args.folder,
+              color: args.color,
+              path: args.path));
     }
   };
 
@@ -132,57 +137,87 @@ class HomeRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [CreateFolderView]
 class CreateFolderRoute extends PageRouteInfo<CreateFolderRouteArgs> {
-  CreateFolderRoute({Key? key, Folder? folder})
+  CreateFolderRoute(
+      {Key? key, Map<String, dynamic>? folder, required String path})
       : super(CreateFolderRoute.name,
             path: '/create-folder',
-            args: CreateFolderRouteArgs(key: key, folder: folder));
+            args: CreateFolderRouteArgs(key: key, folder: folder, path: path));
 
   static const String name = 'CreateFolderRoute';
 }
 
 class CreateFolderRouteArgs {
-  const CreateFolderRouteArgs({this.key, this.folder});
+  const CreateFolderRouteArgs({this.key, this.folder, required this.path});
 
   final Key? key;
 
-  final Folder? folder;
+  final Map<String, dynamic>? folder;
+
+  final String path;
 
   @override
   String toString() {
-    return 'CreateFolderRouteArgs{key: $key, folder: $folder}';
+    return 'CreateFolderRouteArgs{key: $key, folder: $folder, path: $path}';
   }
 }
 
 /// generated route for
 /// [CreateFileView]
-class CreateFileRoute extends PageRouteInfo<void> {
-  const CreateFileRoute() : super(CreateFileRoute.name, path: '/create-File');
+class CreateFileRoute extends PageRouteInfo<CreateFileRouteArgs> {
+  CreateFileRoute({Key? key, required String path})
+      : super(CreateFileRoute.name,
+            path: '/create-File',
+            args: CreateFileRouteArgs(key: key, path: path));
 
   static const String name = 'CreateFileRoute';
+}
+
+class CreateFileRouteArgs {
+  const CreateFileRouteArgs({this.key, required this.path});
+
+  final Key? key;
+
+  final String path;
+
+  @override
+  String toString() {
+    return 'CreateFileRouteArgs{key: $key, path: $path}';
+  }
 }
 
 /// generated route for
 /// [FolderView]
 class FolderRoute extends PageRouteInfo<FolderRouteArgs> {
-  FolderRoute({Key? key, required Folder folder, required Color color})
+  FolderRoute(
+      {Key? key,
+      required Map<String, dynamic> folder,
+      required Color color,
+      required String path})
       : super(FolderRoute.name,
             path: '/folder',
-            args: FolderRouteArgs(key: key, folder: folder, color: color));
+            args: FolderRouteArgs(
+                key: key, folder: folder, color: color, path: path));
 
   static const String name = 'FolderRoute';
 }
 
 class FolderRouteArgs {
-  const FolderRouteArgs({this.key, required this.folder, required this.color});
+  const FolderRouteArgs(
+      {this.key,
+      required this.folder,
+      required this.color,
+      required this.path});
 
   final Key? key;
 
-  final Folder folder;
+  final Map<String, dynamic> folder;
 
   final Color color;
 
+  final String path;
+
   @override
   String toString() {
-    return 'FolderRouteArgs{key: $key, folder: $folder, color: $color}';
+    return 'FolderRouteArgs{key: $key, folder: $folder, color: $color, path: $path}';
   }
 }

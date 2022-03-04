@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injectable/injectable.dart';
 import 'package:ipfs_client_flutter/ipfs_client_flutter.dart';
 import 'package:path_provider/path_provider.dart';
@@ -22,6 +23,7 @@ class IpfsService {
   }
 
   Future<bool> onCreateAccount() async {
+    EasyLoading.show(status: "Creating account...");
     final auth = locator<AuthService>();
     final encryption = locator<EncryptionService>();
 
@@ -30,7 +32,8 @@ class IpfsService {
     var res = await _ipfsClient.mkdir(dir: "/$username");
     if (res is String) res = json.decode(res);
     if (res['Message'] != null) {
-      throw Exception(res['Message']);
+      EasyLoading.showError(res['Message']);
+      return false;
     } else {
       Directory tempDir = await getTemporaryDirectory();
       String tempPath = tempDir.path;
@@ -40,17 +43,20 @@ class IpfsService {
       log("pkey $pkey");
       File fileEncrypted = await encryption.encrypt(file.path);
       _ipfsClient.write(dir: "/$username/pkey", filePath: fileEncrypted.path);
+      EasyLoading.dismiss();
       return true;
     }
   }
 
   Future<bool> onSignIn() async {
+    EasyLoading.show(status: "Signing in...");
     final auth = locator<AuthService>();
     final encryption = locator<EncryptionService>();
-    var res = await _ipfsClient.getAllDirectories(dir: "/${auth.username}");
+    var res = await _ipfsClient.ls(dir: "/${auth.username}");
     if (res is String) res = json.decode(res);
     if (res['Message'] != null) {
-      throw Exception(res['Message']);
+      EasyLoading.showError(res['Message']);
+      return false;
     } else {
       Directory tempDir = await getTemporaryDirectory();
       String tempPath = tempDir.path;
@@ -61,10 +67,56 @@ class IpfsService {
         File deFile = await encryption.decrypt(file.path);
         String pkey = await deFile.readAsString();
         auth.pkey = pkey;
+        EasyLoading.dismiss();
         return true;
       } catch (e) {
-        throw Exception("Invalid password");
+        EasyLoading.showError("Invalid password");
+        return false;
       }
     }
+  }
+
+  Future getDirectory(String path) async {
+    var res = await _ipfsClient.ls(dir: path);
+    final entries = List<Map<String, dynamic>>.from(
+        (jsonDecode(res['data']) ?? Map.from({}))['Entries']);
+    List<Map<String, dynamic>> data = await Future.wait(entries.map((e) async {
+      var res = await _ipfsClient.stat(dir: "$path/${e['Name']}");
+      if (res is String) res = json.decode(res);
+      if (res['Message'] != null) {
+        throw Exception(res['Message']);
+      } else {
+        var json = jsonDecode(res['data']);
+        return {...e, ...json};
+      }
+    }));
+    data.removeWhere((element) => element['Name'] == 'pkey');
+    return List<Map<String, dynamic>>.from(data);
+  }
+
+  Future<void> uploadFile(String dir, String filePath) async {
+    EasyLoading.show(status: "Encrypting...");
+    var file = await locator<EncryptionService>().encrypt(filePath);
+    EasyLoading.show(status: "Uploading file...");
+    await _ipfsClient.write(dir: dir, filePath: file.path);
+    EasyLoading.showSuccess("File uploaded");
+  }
+
+  Future<void> createFolder(String dir) async {
+    EasyLoading.show(status: "Creating Folder...");
+    await _ipfsClient.mkdir(dir: dir);
+    EasyLoading.showSuccess("Folder Created");
+  }
+
+  Future<void> delete(String path) async {
+    EasyLoading.show(status: "Deleting...");
+    await _ipfsClient.remove(dir: path);
+    EasyLoading.showSuccess("Deleted");
+  }
+
+  Future<void> move(String oldPath, String newPath) async {
+    EasyLoading.show(status: "Renaming...");
+    await _ipfsClient.mv(oldPath: oldPath, newPath: newPath);
+    EasyLoading.showSuccess("Renamed");
   }
 }

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:stacked/stacked.dart';
-import 'package:xpress_drive/datamodels/folder.dart';
 import 'package:xpress_drive/ui/create_folder/create_folder_viewmodel.dart';
 import 'package:xpress_drive/ui/widget/color.dart';
 import 'package:xpress_drive/ui/widget/textfields/textfield.dart';
 
 class CreateFolderView extends StatelessWidget {
-  final Folder? folder;
-  const CreateFolderView({Key? key, this.folder}) : super(key: key);
+  final String path;
+  final Map<String, dynamic>? folder;
+  const CreateFolderView({Key? key, this.folder, required this.path}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CreateFolderViewModel>.reactive(
-        viewModelBuilder: () => CreateFolderViewModel(folder: folder),
+        viewModelBuilder: () => CreateFolderViewModel(folder: folder, path: path, oldName: folder?['Name']),
         builder: (context, model, child) {
           return Scaffold(
             appBar: AppBar(
@@ -35,8 +35,10 @@ class CreateFolderView extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Text(
                     folder == null ? 'Create Folder' : 'Edit Folder',
-                    style:
-                        TextStyle(fontSize: 30.sp,fontFamily: 'Gilroy-Bold', fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 30.sp,
+                        fontFamily: 'Gilroy-Bold',
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(height: 30.h),
@@ -45,7 +47,7 @@ class CreateFolderView extends StatelessWidget {
                   child: CustomField(
                     label: 'Folder Name',
                     hint: 'Enter Folder Name',
-                    value: model.folder.title,
+                    value: model.folder['Name'] ?? '',
                     onChanged: model.updateTitle,
                   ),
                 ),
