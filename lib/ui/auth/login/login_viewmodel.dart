@@ -33,7 +33,8 @@ class LoginViewModel extends BaseViewModel {
     auth.username = _username;
     auth.pkey = _password;
     if (await auth.checkAuth()) {
-      locator<AppRouter>().navigate(const HomeRoute());
+      locator<AppRouter>()
+          .pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
     }
   }
 }

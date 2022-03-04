@@ -34,7 +34,8 @@ class PassGenViewModel extends BaseViewModel {
 
     if (await locator<IpfsService>().onCreateAccount()) {
       await locator<BiometricService>().storePkey(_username, _password);
-      locator<AppRouter>().navigate(const HomeRoute());
+      locator<AppRouter>()
+          .pushAndPopUntil(const HomeRoute(), predicate: (route) => false);
     }
   }
 
