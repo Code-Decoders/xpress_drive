@@ -35,44 +35,48 @@ class FolderView extends StatelessWidget {
                     fontSize: 20,
                   )),
             ),
-            body: ListView.builder(
-              padding: EdgeInsets.fromLTRB(30.w, 20.h, 30.w, 0),
-              itemBuilder: (context, index) {
-                if (index < model.subFolders.length) {
-                  return FolderTile(
-                    view: View.List,
-                    folder: model.subFolders[index],
-                    onTap: () {
-                      model.navigateToFolder(index);
+            body: model.isBusy
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+                    padding: EdgeInsets.fromLTRB(30.w, 20.h, 30.w, 0),
+                    itemBuilder: (context, index) {
+                      if (index < model.subFolders.length) {
+                        return FolderTile(
+                          view: View.List,
+                          folder: model.subFolders[index],
+                          onTap: () {
+                            model.navigateToFolder(index);
+                          },
+                          onEdit: () {
+                            model.navigateToEditFolder(index);
+                          },
+                          onDelete: () {
+                            model.onDelete(index);
+                          },
+                          color: (index + 1) % 4 == 0
+                              ? AppColor.green
+                              : (index + 1) % 4 == 3
+                                  ? AppColor.red
+                                  : (index + 1) % 4 == 2
+                                      ? AppColor.yellow
+                                      : AppColor.primaryDark,
+                        );
+                      }
+                      return FileTile(
+                        view: View.List,
+                        onTap: () => model.openFile(
+                            model.files[index - model.subFolders.length]),
+                        file: model.files[index - model.subFolders.length],
+                        color: color,
+                        onDelete: () {
+                          model.deleteFile(index - model.subFolders.length);
+                        },
+                      );
                     },
-                    onEdit: () {
-                      model.navigateToEditFolder(index);
-                    },
-                    onDelete: () {
-                      model.onDelete(index);
-                    },
-                    color: (index + 1) % 4 == 0
-                        ? AppColor.green
-                        : (index + 1) % 4 == 3
-                            ? AppColor.red
-                            : (index + 1) % 4 == 2
-                                ? AppColor.yellow
-                                : AppColor.primaryDark,
-                  );
-                }
-                return FileTile(
-                  view: View.List,
-                  onTap: () => model
-                      .openFile(model.files[index - model.subFolders.length]),
-                  file: model.files[index - model.subFolders.length],
-                  color: color,
-                  onDelete: () {
-                    model.deleteFile(index - model.subFolders.length);
-                  },
-                );
-              },
-              itemCount: model.files.length + model.subFolders.length,
-            ),
+                    itemCount: model.files.length + model.subFolders.length,
+                  ),
             floatingActionButton: SpeedDial(
               direction: SpeedDialDirection.up,
               children: [
