@@ -47,6 +47,13 @@ class LoginView extends StatelessWidget {
                       child: CustomField(
                         label: 'Username',
                         hint: 'Enter Username',
+                        validator: (val) {
+                          if (val?.isEmpty ?? true) {
+                            return 'Please enter username';
+                          } else if ((val?.length ?? 0) < 5) {
+                            return 'Username must be atleast 5 characters';
+                          }
+                        },
                         value: model.username,
                         onChanged: model.setUsername,
                       ),
@@ -54,10 +61,17 @@ class LoginView extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30.w),
                       child: CustomField(
-                        label: 'Password',
-                        hint: 'Enter Password',
+                        label: 'Private Key',
+                        hint: 'Enter Private Key',
                         value: model.password,
                         onChanged: model.setPassword,
+                        validator: (val) {
+                          if (val?.isEmpty ?? true) {
+                            return 'Please enter private key';
+                          } else if ((val?.length ?? 0) < 32) {
+                            return 'Private key must be atleast 32 characters';
+                          }
+                        },
                         obscureText: true,
                       ),
                     ),

@@ -8,6 +8,7 @@ import 'package:ipfs_client_flutter/ipfs_client_flutter.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:xpress_drive/app/app.locator.dart';
+import 'package:xpress_drive/app/app.router.dart';
 import 'package:xpress_drive/services/auth_service.dart';
 import 'package:xpress_drive/services/encryption_service.dart';
 
@@ -33,7 +34,11 @@ class IpfsService {
     var res = await _ipfsClient.mkdir(dir: "/$username");
     if (res is String) res = json.decode(res);
     if (res['Message'] != null) {
+      if (res['Message'] == 'file already exists') {
+        res['Message'] = 'Account already exists';
+      }
       EasyLoading.showError(res['Message']);
+      locator<AppRouter>().popTop();
       return false;
     } else {
       Directory tempDir = await getTemporaryDirectory();
@@ -56,6 +61,9 @@ class IpfsService {
     var res = await _ipfsClient.ls(dir: "/${auth.username}");
     if (res is String) res = json.decode(res);
     if (res['Message'] != null) {
+       if (res['Message'] == 'file already exists') {
+        res['Message'] = 'Incorrect username or password';
+      }
       EasyLoading.showError(res['Message']);
       return false;
     } else {
@@ -71,7 +79,7 @@ class IpfsService {
         EasyLoading.dismiss();
         return true;
       } catch (e) {
-        EasyLoading.showError("Invalid password");
+        EasyLoading.showError("Incorrect username or password");
         return false;
       }
     }
@@ -81,7 +89,7 @@ class IpfsService {
     var res = await _ipfsClient.ls(dir: path);
     if (res is Map) {
       final entries =
-          List<Map<String, dynamic>>.from(jsonDecode(res['data'])['Entries']);
+          List<Map<String, dynamic>>.from((jsonDecode(res['data'])??{'a':''})['Entries']??[]);
       List<Map<String, dynamic>> data =
           await Future.wait(entries.map((e) async {
         var res = await _ipfsClient.stat(dir: "$path/${e['Name']}");

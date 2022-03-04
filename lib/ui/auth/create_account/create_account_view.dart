@@ -48,6 +48,13 @@ class CreateAccountView extends StatelessWidget {
                       child: CustomField(
                         label: 'Username',
                         hint: 'Enter Username',
+                        validator: (val) {
+                          if (val?.isEmpty ?? true) {
+                            return 'Please enter username';
+                          } else if ((val?.length ?? 0) < 5) {
+                            return 'Username must be atleast 5 characters';
+                          }
+                        },
                         value: model.username,
                         onChanged: model.setUsername,
                       ),
