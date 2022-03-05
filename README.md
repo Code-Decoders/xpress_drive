@@ -32,3 +32,4 @@ Once everything is step up, run `flutter pub get`
 ### `Step 1:`
 run `flutter run`
 
+# That's all folks!! have a good day! :coffee:
