@@ -10,9 +10,9 @@ import '../../services/auth_service.dart';
 
 enum Filter {
   Recent,
-  Oldest,
-  A_TO_Z,
-  Z_TO_A,
+  // Oldest,
+  // A_TO_Z,
+  // Z_TO_A,
 }
 
 class HomeViewModel extends BaseViewModel {

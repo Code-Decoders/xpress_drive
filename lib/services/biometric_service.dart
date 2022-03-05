@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:biometric_storage/biometric_storage.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
@@ -55,7 +56,11 @@ class BiometricService {
       source = await storage.read().catchError((e) {
         return null;
       });
-      return List<String?>.from(jsonDecode(source!));
+      if (source == null) {
+        EasyLoading.showError('No pkey found in biometric storage');
+        throw Exception('No pkey found in biometric storage');
+      }
+      return List<String?>.from(jsonDecode(source));
     }
   }
 }

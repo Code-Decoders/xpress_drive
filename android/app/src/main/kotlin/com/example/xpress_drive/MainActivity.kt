@@ -1,4 +1,4 @@
-package com.example.xpress_drive
+package com.codedecoders.xpress_drive
 
 import android.os.Bundle
 import io.flutter.embedding.android.FlutterFragmentActivity

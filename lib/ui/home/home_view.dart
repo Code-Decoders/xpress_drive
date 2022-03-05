@@ -67,13 +67,13 @@ class HomeView extends StatelessWidget {
                         }),
                       ],
                     ),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    SearchField(
-                        hint: 'Search Folder',
-                        value: model.searchText,
-                        onChanged: model.setSearchText),
+                    // SizedBox(
+                    //   height: 30.h,
+                    // ),
+                    // SearchField(
+                    //     hint: 'Search Folder',
+                    //     value: model.searchText,
+                    //     onChanged: model.setSearchText),
                     SizedBox(
                       height: 30.h,
                     ),
