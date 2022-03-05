@@ -1,6 +1,6 @@
 # Xpress Drive
 
-A decentralised and end to end encrypted cloud storage solution .
+A decentralised and end to end encrypted cloud storage solution.
 
 ---
 
@@ -21,3 +21,12 @@ The important libraries we used to make this projects are,
 
 ### `Project's value for the IPFS ecosystem or developer community`
 Xpress Drive provides and encrypted and decentralised solution to the users, i.e. a user first encrypts a File using a private key then uploads it into IPFS. At the time of retrival only he can view the files using the private key. 
+
+### `Steps to run the project`
+### `Step 0:`
+Download android stuido and make sure to setup [flutter](https://docs.flutter.dev/get-started/install) in your system.
+### `Step 1:`
+Once everything is step up, run `flutter pub get`
+### `Step 1:`
+run `flutter run`
+
