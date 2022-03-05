@@ -12,10 +12,11 @@ https://drive.google.com/file/d/1CZ8jTXAx2tCnBy4L_68xe3SDMxmfGX_H/view?usp=shari
 
 ### `Feature List`
 1. Login/Register.
-2. Upload secured/encrypted files on IPFS by using a private key(only visible to you, making it super secure).
-3. Download/view files.
-4. Delete files.
-5. Toggle between list and grid view.
+2. Upload encrypted files on IPFS by using a private key(only visible to you, making it super secure).
+3. ALL File Formats Supported: New files, Downloads, Videos, Audios, Images, Apps, Docs and Archives.
+4. Download/view files.
+5. Delete files.
+6. Toggle between list and grid view.
 
 ---
 
