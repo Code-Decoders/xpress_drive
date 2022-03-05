@@ -2,7 +2,7 @@
 
 # Xpress Drive
 
-A decentralised and end to end encrypted cloud storage solution.
+A decentralised and end to end encrypted cloud storage solution built on IPFS(InterPlanetary File System).
 
 ### Checkout Xpress Drive by downloading the apk:
 
