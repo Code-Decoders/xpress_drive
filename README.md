@@ -17,8 +17,6 @@ https://drive.google.com/file/d/1CZ8jTXAx2tCnBy4L_68xe3SDMxmfGX_H/view?usp=shari
 4. Delete files.
 5. Toggle between list and grid view.
 
---- 
-
 ---
 
 ### `Tech Stack`
