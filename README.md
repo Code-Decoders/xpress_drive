@@ -1,3 +1,5 @@
+![Screenshot_20220305-173010-2](https://user-images.githubusercontent.com/22388017/156882125-60cd9606-b2bc-429f-91ba-798112d229c2.jpg)
+
 # Xpress Drive
 
 A decentralised and end to end encrypted cloud storage solution.
