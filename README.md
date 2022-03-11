@@ -20,9 +20,9 @@ A decentralised and end to end encrypted cloud storage solution built on IPFS(In
 ---
 
 ### `Tech Stack`
-* <img src="https://user-images.githubusercontent.com/22388017/157873532-6287ed4a-e305-4ba8-9879-b315cc7104fa.png" width="20" height="20"/>  Flutter (Frontend)
-* <img src="https://user-images.githubusercontent.com/22388017/157877387-6306a173-30de-47ad-9fe7-d6195cb67146.png" width="20" height="20"/> IPFS
-* <img src="https://user-images.githubusercontent.com/22388017/157878228-221f62a6-24fe-4c3e-beed-17180142fcb1.png" width="20" height="20"/> Figma (UI Design)
+* <img src="https://user-images.githubusercontent.com/22388017/157873532-6287ed4a-e305-4ba8-9879-b315cc7104fa.png" width="20" height="20"/>   Flutter (Frontend)
+* <img src="https://user-images.githubusercontent.com/22388017/157877387-6306a173-30de-47ad-9fe7-d6195cb67146.png" width="20" height="20"/>   IPFS
+* <img src="https://user-images.githubusercontent.com/22388017/157878228-221f62a6-24fe-4c3e-beed-17180142fcb1.png" width="20" height="20"/>   Figma (UI Design)
 
 --- 
 
