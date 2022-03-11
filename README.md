@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/22388017/157901679-4c1b0081-0de5-41c1-a6c0-73ecbb5d481e.png)
+
 # Xpress Drive
 
 A decentralised and end to end encrypted cloud storage solution built on IPFS(InterPlanetary File System).
@@ -5,7 +7,6 @@ A decentralised and end to end encrypted cloud storage solution built on IPFS(In
 ### Get the application on:
  <a href="https://play.google.com/store/apps/details?id=com.codedecoders.xpress_drive"><img src="https://user-images.githubusercontent.com/22388017/157868292-a481ed09-fa25-47f5-880d-1cfd4078afd9.png" width="280" height="108"/></a>
  
-![image](https://user-images.githubusercontent.com/22388017/157901399-a820d955-f94f-49ea-acb6-983bec41b003.png)
 ---
 
 ### `Feature List`
