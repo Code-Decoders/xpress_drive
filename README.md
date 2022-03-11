@@ -4,7 +4,7 @@
 
 A decentralised and end to end encrypted cloud storage solution built on IPFS(InterPlanetary File System).
 
-### Get It on:
+### Get the application on:
  <a href="https://play.google.com/store/apps/details?id=com.codedecoders.xpress_drive"><img src="https://cdn.syncfusion.com/content/images/FTControl/google-play-store.png"/></a>
 
 ---
