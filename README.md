@@ -5,7 +5,7 @@
 A decentralised and end to end encrypted cloud storage solution built on IPFS(InterPlanetary File System).
 
 ### Get the application on:
- <a href="https://play.google.com/store/apps/details?id=com.codedecoders.xpress_drive"><img src="https://user-images.githubusercontent.com/22388017/157867682-94a8154d-cfc5-4c4e-b80e-ae0387890044.gif"/></a>
+ <a href="https://play.google.com/store/apps/details?id=com.codedecoders.xpress_drive"><img src=https://user-images.githubusercontent.com/22388017/157867922-b657c995-4399-486d-be4e-ecc5c8506d23.gif"/></a>
 
 ---
 
