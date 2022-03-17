@@ -7,6 +7,11 @@ A decentralised and end to end encrypted cloud storage solution built on IPFS(In
 ### Get the application on:
  <a href="https://play.google.com/store/apps/details?id=com.codedecoders.xpress_drive"><img src="https://user-images.githubusercontent.com/22388017/157868292-a481ed09-fa25-47f5-880d-1cfd4078afd9.png" width="280" height="108"/></a>
  
+ ---
+ 
+### Walkthrough Video
+https://user-images.githubusercontent.com/22388017/158843101-88be1942-ed8c-4de5-8eab-6d5394e2cafa.mp4
+
 ---
 
 ### `Feature List`
