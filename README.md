@@ -9,10 +9,10 @@ A decentralised and end to end encrypted cloud storage solution built on IPFS(In
  
  ---
  
-### Walkthrough Video
 
-https://user-images.githubusercontent.com/22388017/158843345-224c7585-498e-44af-ba67-a5905acb8ebc.mp4
+Youtube Video Demo
 
+[![Youtube Video](https://img.youtube.com/vi/R1D__TNZ-4A/sddefault.jpg)](https://youtu.be/R1D__TNZ-4A)
 ---
 
 ### `Feature List`
