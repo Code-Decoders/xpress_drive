@@ -7,8 +7,12 @@ A decentralised and end to end encrypted cloud storage solution built on IPFS(In
 ### Get the application on:
  <a href="https://play.google.com/store/apps/details?id=com.codedecoders.xpress_drive"><img src="https://user-images.githubusercontent.com/22388017/157868292-a481ed09-fa25-47f5-880d-1cfd4078afd9.png" width="280" height="108"/></a>
  
- ---
- 
+## Inspiration
+
+> Xpress Drive inspired by the principles of Web3, which prioritize user ownership and control over their data. By leveraging decentralized technologies such as blockchain and IPFS (InterPlanetary File System), Xpress Drive can provide users with full ownership and sovereignty over their files and data, without relying on a central authority.
+
+
+---
 
 Youtube Video Demo
 
