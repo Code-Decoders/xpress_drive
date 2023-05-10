@@ -47,6 +47,13 @@ Xpress Drive provides and encrypted and decentralised solution to the users, i.e
 
 --- 
 
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
 ### `Steps to run the project`
 ### `Step 0:`
 Download android stuido and make sure to setup [flutter](https://docs.flutter.dev/get-started/install) in your system.
@@ -55,4 +62,15 @@ Once everything is step up, run `flutter pub get`
 ### `Step 1:`
 run `flutter run`
 
-# That's all folks!! have a good day! :coffee:
+## License
+
+Distributed under the MIT License. See `LICENSE.md` for more information.
+
+## Feedback & Contact
+
+If you have any feedback or contact, please reach out to us at maadhav2001@gmail.com
+
+## Authors
+
+- [@Maadhav](https://www.github.com/Maadhav)
+- [@kunal528](https://www.github.com/kunal528)
