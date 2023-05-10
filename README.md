@@ -4,8 +4,6 @@
 
 A decentralised and end to end encrypted cloud storage solution built on IPFS(InterPlanetary File System).
 
-### Get the application on:
- <a href="https://play.google.com/store/apps/details?id=com.codedecoders.xpress_drive"><img src="https://user-images.githubusercontent.com/22388017/157868292-a481ed09-fa25-47f5-880d-1cfd4078afd9.png" width="280" height="108"/></a>
  
 ## Inspiration
 
@@ -19,6 +17,10 @@ Youtube Video Demo
 [![Youtube Video](https://img.youtube.com/vi/R1D__TNZ-4A/sddefault.jpg)](https://youtu.be/R1D__TNZ-4A)
 ---
 
+
+### Get the application on:
+ <a href="https://play.google.com/store/apps/details?id=com.codedecoders.xpress_drive"><img src="https://user-images.githubusercontent.com/22388017/157868292-a481ed09-fa25-47f5-880d-1cfd4078afd9.png" width="280" height="108"/></a>
+ 
 ### `Feature List`
 1. Login/Register.
 2. Upload encrypted files on **IPFS by using a private key**(only visible to you, making it super secure).
