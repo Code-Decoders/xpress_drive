@@ -11,12 +11,12 @@ A decentralised and end to end encrypted cloud storage solution built on IPFS(In
 
 
 ## Features
-1. Login/Register.
-2. Upload encrypted files on **IPFS by using a private key**(only visible to you, making it super secure).
-3. All File Formats Supported: New files, Downloads, Videos, Audios, Images, Apps, Docs and Archives.
-4. Download/view files.
-5. Delete files.
-6. Toggle between list and grid view.
+- Login/Register.
+- Upload encrypted files on **IPFS by using a private key**(only visible to you, making it super secure).
+- All File Formats Supported: New files, Downloads, Videos, Audios, Images, Apps, Docs and Archives.
+- Download/view files.
+- Delete files.
+- Toggle between list and grid view.
 
 
 ## Demo
